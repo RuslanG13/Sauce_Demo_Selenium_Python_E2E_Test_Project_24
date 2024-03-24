@@ -1,0 +1,6 @@
+# Ignore IntelliJ IDEA project directory
+.idea/
+
+# Ignore virtual environment
+venv/
+
