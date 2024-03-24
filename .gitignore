@@ -2,5 +2,5 @@
 .idea/
 
 # Ignore virtual environment
-venv/
+.venv/
 
