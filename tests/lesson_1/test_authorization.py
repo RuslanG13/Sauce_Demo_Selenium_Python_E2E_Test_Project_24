@@ -5,7 +5,7 @@ import pytest
 from data import urls
 from data import input_data
 from data import page_elements_data
-from locators.locators_saucedemo import SauceDemoLocators as sdl
+from locators.locators_saucedemo import SauceDemoLocators as SDL
 
 # chrome webdriver settings
 chrome_options = Options()
@@ -16,12 +16,15 @@ browser = webdriver.Chrome(options=chrome_options)
 
 # tests block
 def test_auth_positive():
+    """
+    Verifying successful user authorization on the Sauce Demo website
+    """
     browser.get(urls.BASE_URL)
 
-    browser.find_element(*sdl.USERNAME_FIELD).send_keys(input_data.username_valid)
-    browser.find_element(*sdl.PASSWORD_FIELD).send_keys(input_data.password)
+    browser.find_element(*SDL.USERNAME_FIELD).send_keys(input_data.username_valid)
+    browser.find_element(*SDL.PASSWORD_FIELD).send_keys(input_data.password)
 
-    browser.find_element(*sdl.LOGIN_BUTTON).click()
+    browser.find_element(*SDL.LOGIN_BUTTON).click()
 
     assert browser.current_url == urls.INVENTORY_PAGE_ENDPOINT
     assert browser.title == page_elements_data.invertory_page_title
