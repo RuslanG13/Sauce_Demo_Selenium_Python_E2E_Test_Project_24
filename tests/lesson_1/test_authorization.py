@@ -16,9 +16,8 @@ browser = webdriver.Chrome(options=chrome_options)
 
 # tests block
 def test_auth_positive():
-    """
-    Verifying successful user authorization on the Sauce Demo website
-    """
+    """Verifying successful user authorization on the Sauce Demo website"""
+
     browser.get(urls.BASE_URL)
 
     browser.find_element(*SDL.USERNAME_FIELD).send_keys(input_data.username_valid)
