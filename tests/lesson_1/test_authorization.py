@@ -16,7 +16,7 @@ browser = webdriver.Chrome(options=chrome_options)
 
 # tests block
 def test_auth_positive():
-    """Verifying successful user authorization on the Sauce Demo website"""
+    """Authorization using correct data"""
 
     browser.get(urls.BASE_URL)
 
@@ -27,3 +27,4 @@ def test_auth_positive():
 
     assert browser.current_url == urls.INVENTORY_PAGE_ENDPOINT
     assert browser.title == page_elements_data.invertory_page_title
+
