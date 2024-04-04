@@ -36,5 +36,3 @@ def auth_negative(browser):
     browser.find_element(*SDL.PASSWORD_FIELD).send_keys(input_data.password_invalid)
 
     browser.find_element(*SDL.LOGIN_BUTTON).click()
-
-
