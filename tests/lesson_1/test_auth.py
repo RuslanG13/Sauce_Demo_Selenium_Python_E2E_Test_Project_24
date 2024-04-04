@@ -1,6 +1,6 @@
 from data import urls
 from data import page_elements_data
-from locators.locators_saucedemo import SauceDemoLocators as SDL
+from locators.locators_saucedemo import LoginPageLocators as LPL
 
 
 # tests block
@@ -14,8 +14,8 @@ def test_auth_positive(browser, auth_positive):
 def test_auth_negative(browser, auth_negative):
     """Test Authorization using incorrect data"""
 
-    login_error_elem = browser.find_element(*SDL.ERROR_LOGIN_MESSAGE)
-    background_color_of_error_container = (browser.find_element(*SDL.ERROR_MESSAGE_CONTAINER)
+    login_error_elem = browser.find_element(*LPL.ERROR_LOGIN_MESSAGE)
+    background_color_of_error_container = (browser.find_element(*LPL.ERROR_MESSAGE_CONTAINER)
                                            .value_of_css_property("background-color"))
 
     assert browser.current_url == urls.BASE_URL

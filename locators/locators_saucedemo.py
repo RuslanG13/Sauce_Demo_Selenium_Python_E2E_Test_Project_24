@@ -1,5 +1,4 @@
-class SauceDemoLocators:
-    # login page
+class LoginPageLocators:
     USERNAME_FIELD = ("xpath", "//input[@id='user-name']")
     PASSWORD_FIELD = ("xpath", "//input[@id='password']")
 
