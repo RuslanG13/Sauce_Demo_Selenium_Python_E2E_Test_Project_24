@@ -28,11 +28,3 @@ def auth_positive(browser):
     browser.find_element(*LPL.LOGIN_BUTTON).click()
 
 
-@pytest.fixture(scope="function")
-def auth_negative(browser):
-    browser.get(urls.BASE_URL)
-
-    browser.find_element(*LPL.USERNAME_FIELD).send_keys(input_data.username_invalid)
-    browser.find_element(*LPL.PASSWORD_FIELD).send_keys(input_data.password_invalid)
-
-    browser.find_element(*LPL.LOGIN_BUTTON).click()
