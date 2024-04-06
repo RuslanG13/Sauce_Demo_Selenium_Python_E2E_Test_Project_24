@@ -18,8 +18,15 @@ class InventoryPageLocators:
     INVENTORY_ITEMS = ("xpath", "//div[@class='inventory_item']")
     INVENTORY_ITEMS_NAME = ("xpath", "//div[@class='inventory_item_name']")
 
-    INVENTORY_ITEMS_PRICES = ("xpath", "//div[@class='inventory_item_price']")
+    INVENTORY_ITEMS_PRICE = ("xpath", "//div[@class='inventory_item_price']")
 
     SHOPPING_CART_BADGE = ("xpath", "//span[@class='shopping_cart_badge']")
 
     CART_ITEM_LABEL = ("xpath", "cart_item_label")
+
+
+class CartPageLocators:
+    CART_ITEMS = ("xpath", "//div[@class='inventory_item']")
+    CART_ITEMS_NAME = ("xpath", "//div[@class='inventory_item_name']")
+
+    CART_ITEMS_PRICE = ("xpath", "//div[@class='inventory_item_price']")
