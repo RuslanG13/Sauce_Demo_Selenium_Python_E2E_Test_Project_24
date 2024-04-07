@@ -16,7 +16,7 @@ class InventoryPageLocators:
     SHOPPING_CART_LINK = ("xpath", "//a[@data-test='shopping-cart-link']")
 
     INVENTORY_ITEMS = ("xpath", "//div[@class='inventory_item']")
-    INVENTORY_ITEMS_NAME = ("xpath", "//div[@class='inventory_item_name']")
+    INVENTORY_ITEMS_NAME = ("xpath", "//div[@class='inventory_item_name'] ")
 
     INVENTORY_ITEMS_PRICE = ("xpath", "//div[@class='inventory_item_price']")
 
@@ -26,7 +26,11 @@ class InventoryPageLocators:
 
 
 class CartPageLocators:
-    CART_ITEMS = ("xpath", "//div[@class='inventory_item']")
+    CART_ITEMS = ("xpath", "//div[@class='cart_item']")
     CART_ITEMS_NAME = ("xpath", "//div[@class='inventory_item_name']")
 
     CART_ITEMS_PRICE = ("xpath", "//div[@class='inventory_item_price']")
+
+    REMOVE_BUTTON_CART = ("xpath", "//button[@id='remove-sauce-labs-backpack']")
+
+    CHECKOUT_BUTTON = ("xpath", "//button[@id='checkout']")

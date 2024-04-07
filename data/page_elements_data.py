@@ -18,4 +18,4 @@ catalog_items = {
 catalog_items_names = ['Sauce Labs Backpack', 'Sauce Labs Bike Light', 'Sauce Labs Bolt T-Shirt',
                        'Sauce Labs Fleece Jacket', 'Sauce Labs Onesie', 'Test.allTheThings() T-Shirt (Red)']
 catalog_items_price = ['$29.99', '$9.99', '$15.99', '$49.99', '$7.99', '$15.99']
-count_items_in_cart = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]
+count_items_in_cart = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]

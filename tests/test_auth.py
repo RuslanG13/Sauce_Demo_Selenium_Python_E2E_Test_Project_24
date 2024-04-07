@@ -8,8 +8,8 @@ from locators.locators_saucedemo import LoginPageLocators as LPL
 def test_auth_positive(browser, auth_positive):
     """Test Authorization using correct data"""
 
-    assert browser.current_url == urls.INVENTORY_PAGE_ENDPOINT
-    assert browser.title == page_elements_data.invertory_page_title
+    assert browser.current_url == urls.INVENTORY_PAGE_ENDPOINT, "a user isn't at inventory page"
+    assert browser.title == page_elements_data.invertory_page_title, "wrong inventory page title"
 
 
 def test_auth_negative(browser):
@@ -25,6 +25,7 @@ def test_auth_negative(browser):
     background_color_of_error_container = (browser.find_element(*LPL.ERROR_MESSAGE_CONTAINER)
                                            .value_of_css_property("background-color"))
 
-    assert browser.current_url == urls.BASE_URL
-    assert login_error_elem.text == page_elements_data.login_error_text
-    assert background_color_of_error_container == page_elements_data.background_color_error_container
+    assert browser.current_url == urls.BASE_URL, "a user isn't at login page"
+    assert login_error_elem.text == page_elements_data.login_error_text, "error message is wrong"
+    assert background_color_of_error_container == page_elements_data.background_color_error_container, \
+        "backgroiund color of error container is incorrect"

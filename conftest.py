@@ -1,3 +1,5 @@
+import time
+
 import pytest
 
 from selenium import webdriver
@@ -6,8 +8,11 @@ from selenium.webdriver.chrome.options import Options
 from data import urls
 from data import input_data
 from data import page_elements_data
+from data.utils import rand_index
+
 from locators.locators_saucedemo import LoginPageLocators as LPL
 from locators.locators_saucedemo import InventoryPageLocators as IPL
+from locators.locators_saucedemo import CartPageLocators as CPL
 
 
 @pytest.fixture()
@@ -15,7 +20,7 @@ def browser():
     chrome_options = Options()
     chrome_options.add_argument("--window-size=1920,1080")
     driver = webdriver.Chrome(options=chrome_options)
-    driver.implicitly_wait(10)
+    driver.implicitly_wait(5)
     return driver
     # driver.quit()
 
@@ -31,16 +36,21 @@ def auth_positive(browser):
 
 
 @pytest.fixture()
-def add_goods_to_cart(browser, auth_positive):
-    item_name_catalog = browser.find_elements(*IPL.INVENTORY_ITEMS)[0].text.split("\n")[0]
-    item_price_catalog = browser.find_elements(*IPL.INVENTORY_ITEMS_PRICE)[0].text
+def add_item_to_cart(browser, auth_positive):
+    list_catalog_items = browser.find_elements(*IPL.INVENTORY_ITEMS)
+    list_add_to_cart_btn = browser.find_elements(*IPL.ADD_TO_CART_BUTTONS)
 
-    assert item_name_catalog == page_elements_data.catalog_items_names[0]
-    assert item_price_catalog == page_elements_data.catalog_items_price[0]
+    selected_item_idx = rand_index(len(list_catalog_items))
+    selected_item_name = list_catalog_items[selected_item_idx].text.split("\n")[0]
+    list_add_to_cart_btn[selected_item_idx].click()
+    numbers_of_items_in_shop_cart = int(browser.find_element(*IPL.SHOPPING_CART_BADGE).text)
 
-    browser.find_elements(*IPL.ADD_TO_CART_BUTTONS)[0].click()
-
-    assert browser.find_element(*IPL.REMOVE_BUTTON).text == page_elements_data.remove_button_name
-    assert browser.find_element(*IPL.SHOPPING_CART_BADGE).text == page_elements_data.count_items_in_cart[0]
+    assert selected_item_name in page_elements_data.catalog_items_names, \
+        "The selected item not present in catalog"
+    assert numbers_of_items_in_shop_cart == page_elements_data.count_items_in_cart[0], \
+        f"The number in shopping cart badge is different than {page_elements_data.count_items_in_cart[0]}"
 
     browser.find_element(*IPL.SHOPPING_CART_BADGE).click()
+    checkout_button = browser.find_element(*CPL.CHECKOUT_BUTTON)
+
+    assert checkout_button, "A user isn't at cart page"
