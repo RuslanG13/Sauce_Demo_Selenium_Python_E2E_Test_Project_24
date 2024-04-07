@@ -4,7 +4,6 @@ from data import input_data
 from locators.locators_saucedemo import LoginPageLocators as LPL
 
 
-# tests block
 def test_auth_positive(browser, auth_positive):
     """Test Authorization using correct data"""
 

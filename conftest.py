@@ -51,6 +51,10 @@ def add_item_to_cart(browser, auth_positive):
         f"The number in shopping cart badge is different than {page_elements_data.count_items_in_cart[0]}"
 
     browser.find_element(*IPL.SHOPPING_CART_BADGE).click()
+
     checkout_button = browser.find_element(*CPL.CHECKOUT_BUTTON)
+    numbers_of_items_in_shop_cart = int(browser.find_element(*IPL.SHOPPING_CART_BADGE).text)
 
     assert checkout_button, "A user isn't at cart page"
+    assert numbers_of_items_in_shop_cart == page_elements_data.count_items_in_cart[0], \
+        f"The number in shopping cart badge is different than {page_elements_data.count_items_in_cart[0]}"

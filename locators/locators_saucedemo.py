@@ -31,6 +31,8 @@ class CartPageLocators:
 
     CART_ITEMS_PRICE = ("xpath", "//div[@class='inventory_item_price']")
 
-    REMOVE_BUTTON_CART = ("xpath", "//button[@id='remove-sauce-labs-backpack']")
+    REMOVE_BUTTON_CART = ("xpath", "//button[@class='btn btn_secondary btn_small cart_button']")
 
     CHECKOUT_BUTTON = ("xpath", "//button[@id='checkout']")
+
+    SHOPPING_CART_BADGE = ("xpath", "//span[@class='shopping_cart_badge']")
