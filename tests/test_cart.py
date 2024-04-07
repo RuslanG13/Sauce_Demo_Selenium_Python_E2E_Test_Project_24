@@ -2,7 +2,7 @@ from data import page_elements_data
 from locators.locators_saucedemo import CartPageLocators as CPL
 
 
-def test_add_item_to_cart_through_catalog(browser, auth_positive, add_item_to_cart):
+def test_add_item_to_cart_through_catalog(browser, auth_positive, add_item_to_cart_through_catalog):
     """Test adding an item to the cart from catalog"""
 
     item_name_in_cart = browser.find_element(*CPL.CART_ITEMS_NAME).text
@@ -13,7 +13,7 @@ def test_add_item_to_cart_through_catalog(browser, auth_positive, add_item_to_ca
         f"The amount is different than {page_elements_data.count_items_in_cart[0]} or cart is empty"
 
 
-def test_delete_item_from_cart(browser, auth_positive, add_item_to_cart):
+def test_delete_item_from_cart(browser, auth_positive, add_item_to_cart_through_catalog):
     browser.find_element(*CPL.REMOVE_BUTTON_CART).click()
     amount_items_in_cart = len(browser.find_elements(*CPL.CART_ITEMS))
 

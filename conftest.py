@@ -36,7 +36,7 @@ def auth_positive(browser):
 
 
 @pytest.fixture()
-def add_item_to_cart(browser, auth_positive):
+def add_item_to_cart_through_catalog(browser, auth_positive):
     list_catalog_items = browser.find_elements(*IPL.INVENTORY_ITEMS)
     list_add_to_cart_btn = browser.find_elements(*IPL.ADD_TO_CART_BUTTONS)
 

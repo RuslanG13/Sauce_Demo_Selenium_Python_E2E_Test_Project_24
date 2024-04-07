@@ -27,4 +27,4 @@ def test_auth_negative(browser):
     assert browser.current_url == urls.BASE_URL, "a user isn't at login page"
     assert login_error_elem.text == page_elements_data.login_error_text, "error message is wrong"
     assert background_color_of_error_container == page_elements_data.background_color_error_container, \
-        "backgroiund color of error container is incorrect"
+        "background color of error container is incorrect"
