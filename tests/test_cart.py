@@ -4,8 +4,8 @@ from locators.locators_saucedemo import CartPageLocators as CPL
 from locators.locators_saucedemo import ItemCardDetail as ICD
 
 
-def test_add_item_to_cart_via_catalog(browser, auth_positive, add_item_to_cart_via_catalog):
-    """Test adding an item to the cart from via catalog"""
+def test_add_item_to_cart_through_catalog(browser, auth_positive, add_item_to_cart_via_catalog):
+    """Test adding an item to the cart from through catalog"""
 
     browser.find_element(*IPL.SHOPPING_CART_BADGE).click()
 
@@ -42,17 +42,28 @@ def test_delete_item_from_cart(browser, auth_positive, add_item_to_cart_via_cata
     assert amount_items_in_cart == 0, "The cart is not empty"
 
 
-def test_add_item_to_cart_via_item_card(browser, auth_positive, add_item_to_cart_via_item_card):
+def test_add_item_to_cart_through_item_card(browser, auth_positive, add_item_to_cart_via_item_card):
     """Test adding a product to the cart from the item card"""
 
     browser.find_element(*ICD.SHOPPING_CART_LINK).click()
-
     amount_items_in_cart = len(browser.find_elements(*CPL.CART_ITEMS))
 
     assert amount_items_in_cart == page_elements_data.count_items_in_cart[0], \
         f"The amount is different than {page_elements_data.count_items_in_cart[0]} or cart is empty"
 
 
-def test_delete_item_from_cart(browser, auth_positive, add_item_to_cart_via_item_card):
+def test_delete_item_from_cart_through_item_card(browser, auth_positive, add_item_to_cart_via_item_card):
     """Removing an item from the cart using the item card"""
-    pass
+
+    remove_button = browser.find_element(*ICD.REMOVE_BUTTON)
+    assert remove_button, "The 'remove' button is not displayed in the item card"
+
+    remove_button.click()
+
+    add_to_cart_button = browser.find_element(*ICD.ADD_TO_CART_BUTTON)
+    assert add_to_cart_button, "The 'Add to cart' button is not displayed in the item card"
+
+    browser.find_element(*ICD.SHOPPING_CART_LINK).click()
+    amount_items_in_cart = len(browser.find_elements(*CPL.CART_ITEMS))
+
+    assert amount_items_in_cart == 0, "The cart is not empty"

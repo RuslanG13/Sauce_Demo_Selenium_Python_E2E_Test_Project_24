@@ -1,5 +1,3 @@
-import time
-
 import pytest
 
 from selenium import webdriver
@@ -12,7 +10,6 @@ from data.utils import rand_index
 
 from locators.locators_saucedemo import LoginPageLocators as LPL
 from locators.locators_saucedemo import InventoryPageLocators as IPL
-from locators.locators_saucedemo import CartPageLocators as CPL
 from locators.locators_saucedemo import ItemCardDetail as ICD
 
 
@@ -67,7 +64,7 @@ def add_item_to_cart_via_item_card(browser, auth_positive):
     assert selected_item_name_product_card == selected_item_name_catalog, \
         "Item at the item's card details and catalog are different"
 
-    browser.find_element(*ICD.ADD_TO_CART_BUTTON_ITEM_CARD).click()
+    browser.find_element(*ICD.ADD_TO_CART_BUTTON).click()
 
     numbers_of_items_in_shop_cart = int(browser.find_element(*IPL.SHOPPING_CART_BADGE).text)
 

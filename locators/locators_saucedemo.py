@@ -40,7 +40,9 @@ class CartPageLocators:
 
 
 class ItemCardDetail:
-    ADD_TO_CART_BUTTON_ITEM_CARD = ("xpath", "//button[@class='btn btn_primary btn_small btn_inventory']")
+    ADD_TO_CART_BUTTON = ("xpath", "//button[@id='add-to-cart']")
     ITEM_NAME_CARD_DETAIL = ("xpath", "//div[@class='inventory_details_name large_size']")
 
     SHOPPING_CART_LINK = ("xpath", "//a[@class='shopping_cart_link']")
+
+    REMOVE_BUTTON = ("xpath", "//button[@id='remove']")
