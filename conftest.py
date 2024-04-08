@@ -10,7 +10,7 @@ from data.utils import rand_index
 
 from locators.locators_saucedemo import LoginPageLocators as LPL
 from locators.locators_saucedemo import InventoryPageLocators as IPL
-from locators.locators_saucedemo import ItemCardDetail as ICD
+from locators.locators_saucedemo import ItemCardDetailLocators as ICD
 
 
 @pytest.fixture()

@@ -1,7 +1,5 @@
-import time
-
 from locators.locators_saucedemo import InventoryPageLocators as IPL
-from locators.locators_saucedemo import ItemCardDetail as ICD
+from locators.locators_saucedemo import ItemCardDetailLocators as ICD
 from data.utils import rand_index
 
 
@@ -39,4 +37,3 @@ def test_successful_redirect_to_item_card_after_click_item_name(browser, auth_po
 
     assert selected_item_name_on_item_card == selected_item_name_on_catalog, \
         f"The item names {selected_item_name_on_item_card} and {selected_item_name_on_catalog} did not match"
-    time.sleep(5)

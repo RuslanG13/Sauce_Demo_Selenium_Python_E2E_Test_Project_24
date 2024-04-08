@@ -1,7 +1,7 @@
 from data import page_elements_data
 from locators.locators_saucedemo import InventoryPageLocators as IPL
 from locators.locators_saucedemo import CartPageLocators as CPL
-from locators.locators_saucedemo import ItemCardDetail as ICD
+from locators.locators_saucedemo import ItemCardDetailLocators as ICD
 
 
 def test_add_item_to_cart_through_catalog(browser, auth_positive, add_item_to_cart_through_catalog):
