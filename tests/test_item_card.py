@@ -32,8 +32,5 @@ def test_successful_redirect_to_item_card_after_click_item_name(browser, auth_po
 
     selected_item_name_on_item_card = browser.find_element(*ICD.ITEM_NAME).text.split("\n")[0]
 
-    print(selected_item_name_on_catalog)
-    print(selected_item_name_on_item_card)
-
     assert selected_item_name_on_item_card == selected_item_name_on_catalog, \
         f"The item names {selected_item_name_on_item_card} and {selected_item_name_on_catalog} did not match"
