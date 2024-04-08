@@ -24,6 +24,8 @@ class InventoryPageLocators:
 
     CART_ITEM_LABEL = ("xpath", "cart_item_label")
 
+    DROPDOWN_PRODUCT_SORT_CONTAINER = ("xpath", "//select[@data-test='product-sort-container']")
+
 
 class CartPageLocators:
     CART_ITEMS = ("xpath", "//div[@class='cart_item']")

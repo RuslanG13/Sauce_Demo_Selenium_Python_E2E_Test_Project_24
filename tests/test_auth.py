@@ -5,14 +5,14 @@ from locators.locators_saucedemo import LoginPageLocators as LPL
 
 
 def test_auth_positive(browser, auth_positive):
-    """Test Authorization using correct data"""
+    """Test authorization using correct data"""
 
     assert browser.current_url == urls.INVENTORY_PAGE_ENDPOINT, "a user isn't at inventory page"
     assert browser.title == page_elements_data.invertory_page_title, "wrong inventory page title"
 
 
 def test_auth_negative(browser):
-    """Test Authorization using incorrect data"""
+    """Test authorization using incorrect data"""
     browser.get(urls.BASE_URL)
 
     browser.find_element(*LPL.USERNAME_FIELD).send_keys(input_data.username_invalid)

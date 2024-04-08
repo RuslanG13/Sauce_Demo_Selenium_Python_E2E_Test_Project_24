@@ -15,7 +15,9 @@ catalog_items = {
     "Sauce Labs Onesie": "$7.99",
     "Test.allTheThings() T-Shirt (Red)": "$15.99"
 }
-catalog_items_names = ['Sauce Labs Backpack', 'Sauce Labs Bike Light', 'Sauce Labs Bolt T-Shirt',
-                       'Sauce Labs Fleece Jacket', 'Sauce Labs Onesie', 'Test.allTheThings() T-Shirt (Red)']
-catalog_items_price = ['$29.99', '$9.99', '$15.99', '$49.99', '$7.99', '$15.99']
-count_items_in_cart = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+catalog_items_names = ('Sauce Labs Backpack', 'Sauce Labs Bike Light', 'Sauce Labs Bolt T-Shirt',
+                       'Sauce Labs Fleece Jacket', 'Sauce Labs Onesie', 'Test.allTheThings() T-Shirt (Red)')
+catalog_items_price = ('$29.99', '$9.99', '$15.99', '$49.99', '$7.99', '$15.99')
+count_items_in_cart = (1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
+
+filter_dropdown = ("Name (A to Z)", "Name (Z to A)", "Price (low to high)", "Price (high to low)")
