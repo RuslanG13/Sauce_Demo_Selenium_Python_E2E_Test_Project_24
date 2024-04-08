@@ -24,7 +24,9 @@ class InventoryPageLocators:
 
     CART_ITEM_LABEL = ("xpath", "cart_item_label")
 
-    DROPDOWN_PRODUCT_SORT_CONTAINER = ("xpath", "//select[@data-test='product-sort-container']")
+    DROPDOWN_PRODUCT_SORT_CONTAINER_BTN = ("xpath", "//select[@data-test='product-sort-container']")
+    SORT_A_Z_DROPDOWN_ITEM = ("xpath", "//option[text()='Name (A to Z)']")
+    SORT_Z_A_DROPDOWN_ITEM = ("xpath", "//option[text()='Name (Z to A)']")
 
 
 class CartPageLocators:
@@ -59,4 +61,3 @@ class CheckoutPageLocators:
 
     GREEN_TICK = ("xpath", "//img[@data-test='pony-express']")
     COMPLETE_HEADER = ("xpath", "//h2[@data-test='complete-header']")
-

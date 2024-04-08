@@ -15,9 +15,11 @@ from locators.locators_saucedemo import ItemCardDetailLocators as ICD
 
 @pytest.fixture()
 def browser():
+    """Chrome webdriver initialization"""
+
     chrome_options = Options()
     chrome_options.add_argument("--window-size=1920,1080")
-    chrome_options.add_argument("--headless")
+    # chrome_options.add_argument("--headless")
     driver = webdriver.Chrome(options=chrome_options)
     driver.implicitly_wait(5)
     yield driver
@@ -26,6 +28,8 @@ def browser():
 
 @pytest.fixture()
 def auth_positive(browser):
+    """Positive auth on the https://www.saucedemo.com"""
+
     browser.get(urls.BASE_URL)
 
     browser.find_element(*LPL.USERNAME_FIELD).send_keys(input_data.username_valid)
@@ -36,6 +40,8 @@ def auth_positive(browser):
 
 @pytest.fixture()
 def add_item_to_cart_through_catalog(browser, auth_positive):
+    """Fixture to add item to cart through catalog"""
+
     list_catalog_items = browser.find_elements(*IPL.INVENTORY_ITEMS)
     list_add_to_cart_btn = browser.find_elements(*IPL.ADD_TO_CART_BUTTON)
 
@@ -53,6 +59,8 @@ def add_item_to_cart_through_catalog(browser, auth_positive):
 
 @pytest.fixture()
 def add_item_to_cart_through_item_card(browser, auth_positive):
+    """Fixture to add item to cart through item card"""
+
     list_catalog_items = browser.find_elements(*IPL.INVENTORY_ITEMS)
     list_items_card_link = browser.find_elements(*IPL.INVENTORY_ITEMS_CARD_LINK_IMAGE)
     selected_item_idx = rand_index(len(list_catalog_items))
