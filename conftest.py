@@ -19,8 +19,8 @@ def browser():
     chrome_options.add_argument("--window-size=1920,1080")
     driver = webdriver.Chrome(options=chrome_options)
     driver.implicitly_wait(5)
-    return driver
-    # driver.quit()
+    yield driver
+    driver.quit()
 
 
 @pytest.fixture()

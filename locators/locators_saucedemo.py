@@ -15,7 +15,7 @@ class InventoryPageLocators:
     SHOPPING_CART_LINK = ("xpath", "//a[@data-test='shopping-cart-link']")
 
     INVENTORY_ITEMS = ("xpath", "//div[@class='inventory_item']")
-    INVENTORY_ITEMS_NAME = ("xpath", "//div[@class='inventory_item_name'] ")
+    INVENTORY_ITEM_NAME = ("xpath", "//div[@class='inventory_item_name ']")
     INVENTORY_ITEMS_CARD_LINK_IMAGE = ("xpath", "//a[contains(@id, 'img_link')]")
 
     INVENTORY_ITEMS_PRICE = ("xpath", "//div[@class='inventory_item_price']")
