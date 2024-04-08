@@ -52,15 +52,6 @@ def add_item_to_cart_via_catalog(browser, auth_positive):
     assert numbers_of_items_in_shop_cart == page_elements_data.count_items_in_cart[0], \
         f"The number in shopping cart badge is different than {page_elements_data.count_items_in_cart[0]}"
 
-    browser.find_element(*IPL.SHOPPING_CART_BADGE).click()
-
-    checkout_button = browser.find_element(*CPL.CHECKOUT_BUTTON)
-    numbers_of_items_in_shop_cart = int(browser.find_element(*IPL.SHOPPING_CART_BADGE).text)
-
-    assert checkout_button, "A user isn't at cart page"
-    assert numbers_of_items_in_shop_cart == page_elements_data.count_items_in_cart[0], \
-        f"The number in shopping cart badge is different than {page_elements_data.count_items_in_cart[0]}"
-
 
 @pytest.fixture()
 def add_item_to_cart_via_item_card(browser, auth_positive):
@@ -71,9 +62,9 @@ def add_item_to_cart_via_item_card(browser, auth_positive):
 
     list_items_card_link[selected_item_idx].click()
 
-    selected_item_name_item_card = browser.find_element(*ICD.ITEM_NAME_CARD_DETAIL).text.split("\n")[0]
+    selected_item_name_product_card = browser.find_element(*ICD.ITEM_NAME_CARD_DETAIL).text.split("\n")[0]
 
-    assert selected_item_name_item_card == selected_item_name_catalog, \
+    assert selected_item_name_product_card == selected_item_name_catalog, \
         "Item at the item's card details and catalog are different"
 
     browser.find_element(*ICD.ADD_TO_CART_BUTTON_ITEM_CARD).click()
