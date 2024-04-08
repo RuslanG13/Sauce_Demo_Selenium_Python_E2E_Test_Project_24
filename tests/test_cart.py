@@ -4,7 +4,7 @@ from locators.locators_saucedemo import CartPageLocators as CPL
 from locators.locators_saucedemo import ItemCardDetail as ICD
 
 
-def test_add_item_to_cart_through_catalog(browser, auth_positive, add_item_to_cart_via_catalog):
+def test_add_item_to_cart_through_catalog(browser, auth_positive, add_item_to_cart_through_catalog):
     """Test adding an item to the cart from through catalog"""
 
     browser.find_element(*IPL.SHOPPING_CART_BADGE).click()
@@ -24,7 +24,7 @@ def test_add_item_to_cart_through_catalog(browser, auth_positive, add_item_to_ca
         f"The amount is different than {page_elements_data.count_items_in_cart[0]} or cart is empty"
 
 
-def test_delete_item_from_cart(browser, auth_positive, add_item_to_cart_via_catalog):
+def test_delete_item_from_cart(browser, auth_positive, add_item_to_cart_through_catalog):
     """Test deleting an item from the cart"""
 
     browser.find_element(*IPL.SHOPPING_CART_BADGE).click()
@@ -42,7 +42,7 @@ def test_delete_item_from_cart(browser, auth_positive, add_item_to_cart_via_cata
     assert amount_items_in_cart == 0, "The cart is not empty"
 
 
-def test_add_item_to_cart_through_item_card(browser, auth_positive, add_item_to_cart_via_item_card):
+def test_add_item_to_cart_through_item_card(browser, auth_positive, add_item_to_cart_through_item_card):
     """Test adding a product to the cart from the item card"""
 
     browser.find_element(*ICD.SHOPPING_CART_LINK).click()
@@ -52,7 +52,7 @@ def test_add_item_to_cart_through_item_card(browser, auth_positive, add_item_to_
         f"The amount is different than {page_elements_data.count_items_in_cart[0]} or cart is empty"
 
 
-def test_delete_item_from_cart_through_item_card(browser, auth_positive, add_item_to_cart_via_item_card):
+def test_delete_item_from_cart_through_item_card(browser, auth_positive, add_item_to_cart_through_item_card):
     """Removing an item from the cart using the item card"""
 
     remove_button = browser.find_element(*ICD.REMOVE_BUTTON)

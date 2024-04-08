@@ -34,7 +34,7 @@ def auth_positive(browser):
 
 
 @pytest.fixture()
-def add_item_to_cart_via_catalog(browser, auth_positive):
+def add_item_to_cart_through_catalog(browser, auth_positive):
     list_catalog_items = browser.find_elements(*IPL.INVENTORY_ITEMS)
     list_add_to_cart_btn = browser.find_elements(*IPL.ADD_TO_CART_BUTTON)
 
@@ -51,15 +51,15 @@ def add_item_to_cart_via_catalog(browser, auth_positive):
 
 
 @pytest.fixture()
-def add_item_to_cart_via_item_card(browser, auth_positive):
+def add_item_to_cart_through_item_card(browser, auth_positive):
     list_catalog_items = browser.find_elements(*IPL.INVENTORY_ITEMS)
-    list_items_card_link = browser.find_elements(*IPL.INVENTORY_ITEMS_CARD_LINK)
+    list_items_card_link = browser.find_elements(*IPL.INVENTORY_ITEMS_CARD_LINK_IMAGE)
     selected_item_idx = rand_index(len(list_catalog_items))
     selected_item_name_catalog = list_catalog_items[selected_item_idx].text.split("\n")[0]
 
     list_items_card_link[selected_item_idx].click()
 
-    selected_item_name_product_card = browser.find_element(*ICD.ITEM_NAME_CARD_DETAIL).text.split("\n")[0]
+    selected_item_name_product_card = browser.find_element(*ICD.ITEM_NAME).text.split("\n")[0]
 
     assert selected_item_name_product_card == selected_item_name_catalog, \
         "Item at the item's card details and catalog are different"

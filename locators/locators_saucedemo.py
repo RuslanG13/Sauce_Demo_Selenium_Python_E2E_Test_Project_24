@@ -9,7 +9,6 @@ class LoginPageLocators:
 
 
 class InventoryPageLocators:
-    # ADD_TO_CART_BUTTON = ("xpath", "//button[@id='add-to-cart-sauce-labs-backpack']")
     ADD_TO_CART_BUTTON = ("xpath", "//button[@class='btn btn_primary btn_small btn_inventory ']")
 
     REMOVE_BUTTON = ("xpath", "//button[@class='btn btn_secondary btn_small btn_inventory ']")
@@ -17,7 +16,7 @@ class InventoryPageLocators:
 
     INVENTORY_ITEMS = ("xpath", "//div[@class='inventory_item']")
     INVENTORY_ITEMS_NAME = ("xpath", "//div[@class='inventory_item_name'] ")
-    INVENTORY_ITEMS_CARD_LINK = ("xpath", "//a[contains(@id, 'img_link')]")
+    INVENTORY_ITEMS_CARD_LINK_IMAGE = ("xpath", "//a[contains(@id, 'img_link')]")
 
     INVENTORY_ITEMS_PRICE = ("xpath", "//div[@class='inventory_item_price']")
 
@@ -41,7 +40,7 @@ class CartPageLocators:
 
 class ItemCardDetail:
     ADD_TO_CART_BUTTON = ("xpath", "//button[@id='add-to-cart']")
-    ITEM_NAME_CARD_DETAIL = ("xpath", "//div[@class='inventory_details_name large_size']")
+    ITEM_NAME = ("xpath", "//div[@class='inventory_details_name large_size']")
 
     SHOPPING_CART_LINK = ("xpath", "//a[@class='shopping_cart_link']")
 
