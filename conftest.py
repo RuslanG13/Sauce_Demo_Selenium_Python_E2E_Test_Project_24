@@ -11,6 +11,7 @@ from data.utils import rand_index
 from locators.locators_saucedemo import LoginPageLocators as LPL
 from locators.locators_saucedemo import InventoryPageLocators as IPL
 from locators.locators_saucedemo import ItemCardDetailLocators as ICD
+from locators.locators_saucedemo import CartPageLocators as CPL
 
 
 @pytest.fixture()
@@ -28,7 +29,7 @@ def browser():
 
 @pytest.fixture()
 def auth_positive(browser):
-    """Positive auth on the https://www.saucedemo.com"""
+    """Fixture: Positive authentication on the https://www.saucedemo.com"""
 
     browser.get(urls.BASE_URL)
 
@@ -40,7 +41,7 @@ def auth_positive(browser):
 
 @pytest.fixture()
 def add_item_to_cart_through_catalog(browser, auth_positive):
-    """Fixture to add item to cart through catalog"""
+    """Fixture: add item to cart through catalog"""
 
     list_catalog_items = browser.find_elements(*IPL.INVENTORY_ITEMS)
     list_add_to_cart_btn = browser.find_elements(*IPL.ADD_TO_CART_BUTTON)
@@ -59,7 +60,7 @@ def add_item_to_cart_through_catalog(browser, auth_positive):
 
 @pytest.fixture()
 def add_item_to_cart_through_item_card(browser, auth_positive):
-    """Fixture to add item to cart through item card"""
+    """Fixture: add item to cart through item card"""
 
     list_catalog_items = browser.find_elements(*IPL.INVENTORY_ITEMS)
     list_items_card_link = browser.find_elements(*IPL.INVENTORY_ITEMS_CARD_LINK_IMAGE)
@@ -79,3 +80,15 @@ def add_item_to_cart_through_item_card(browser, auth_positive):
 
     assert numbers_of_items_in_shop_cart == page_elements_data.count_items_in_cart[0], \
         f"The number in shopping cart badge is different than {page_elements_data.count_items_in_cart[0]}"
+
+
+@pytest.fixture()
+def check_exist_item_in_cart(browser, auth_positive):
+    """Fixture: check the added item in shopping cart"""
+
+    browser.find_element(*IPL.SHOPPING_CART_BADGE).click()
+
+    amount_items_in_cart = len(browser.find_elements(*CPL.CART_ITEMS))
+
+    assert amount_items_in_cart == page_elements_data.count_items_in_cart[0], \
+        f"The amount is different than {page_elements_data.count_items_in_cart[0]} or cart is empty"
