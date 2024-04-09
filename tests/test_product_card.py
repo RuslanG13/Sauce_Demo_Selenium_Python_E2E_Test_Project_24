@@ -4,8 +4,8 @@ from locators.locators_saucedemo import ItemCardDetailLocators as ICD
 from data.utils import rand_index
 
 
-def test_redirect_to_item_card_after_click_item_image(browser, auth_positive):
-    """Test: successful redirect to the item card after clicking on the item image"""
+def test_redirect_to_product_card_after_click_product_image(browser, auth_positive):
+    """Test: successful redirect to the product card after clicking on the product image"""
 
     list_catalog_items = browser.find_elements(*IPL.INVENTORY_ITEMS)
     list_catalog_items_image = browser.find_elements(*IPL.INVENTORY_ITEMS_CARD_LINK_IMAGE)
@@ -18,11 +18,11 @@ def test_redirect_to_item_card_after_click_item_image(browser, auth_positive):
     selected_item_name_on_item_card = browser.find_element(*ICD.ITEM_NAME).text.split("\n")[0]
 
     assert selected_item_name_on_item_card == selected_item_name_on_catalog, \
-        f"The item names {selected_item_name_on_item_card} and {selected_item_name_on_catalog} did not match"
+        f"The product names {selected_item_name_on_item_card} and {selected_item_name_on_catalog} did not match"
 
 
-def test_redirect_to_item_card_after_click_item_name(browser, auth_positive):
-    """Test: successful redirect to the item card after clicking on the item name"""
+def test_redirect_to_product_card_after_click_product_name(browser, auth_positive):
+    """Test: successful redirect to the product card after clicking on the product name"""
 
     list_catalog_items_name = browser.find_elements(*IPL.INVENTORY_ITEM_NAME)
 
@@ -34,4 +34,4 @@ def test_redirect_to_item_card_after_click_item_name(browser, auth_positive):
     selected_item_name_on_item_card = browser.find_element(*ICD.ITEM_NAME).text.split("\n")[0]
 
     assert selected_item_name_on_item_card == selected_item_name_on_catalog, \
-        f"The item names {selected_item_name_on_item_card} and {selected_item_name_on_catalog} did not match"
+        f"The product names {selected_item_name_on_item_card} and {selected_item_name_on_catalog} did not match"
