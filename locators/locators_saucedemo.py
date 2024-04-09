@@ -27,6 +27,7 @@ class InventoryPageLocators:
     DROPDOWN_PRODUCT_SORT_CONTAINER_BTN = ("xpath", "//select[@data-test='product-sort-container']")
     SORT_A_Z_DROPDOWN_ITEM = ("xpath", "//option[text()='Name (A to Z)']")
     SORT_Z_A_DROPDOWN_ITEM = ("xpath", "//option[text()='Name (Z to A)']")
+    SORT_LOW_HIGH_DROPDOWN_ITEM = ("xpath", "//option[text()='Price (low to high)']")
 
 
 class CartPageLocators:
