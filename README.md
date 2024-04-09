@@ -1,38 +1,39 @@
-# Project - https://www.saucedemo.com/
+# Test Project: E2E tests for Sauce Demo using Selenium (Python)
+# URL: https://www.saucedemo.com/
 
-### Check-List:
+# Check-List:
 
 
-### Авторизация
+## Authorization
 
-1) Авторизация используя корректные данные (standard_user, secret_sauce)
-2) Авторизация используя некорректные данные (user, user)
+1) Authorization using correct data (standard_user, secret_sauce)
+2) Authorization using incorrect data (user, user)
    
-### Корзина
+## Shopping Cart
 
-1) Добавление товара в корзину через каталог
-2) Удаление товара из корзины через корзину
-3) Добавление товара в корзину из карточки товара
-4) Удаление товара из корзины через карточку товара
+1) Adding a product to the cart through the catalog
+2) Removing an item from the cart via the cart
+3) Adding a product to the cart from the product card
+4) Removing an item from the cart using the item card
    
-### Карточка товара
+## Product card
 
-1) Успешный переход к карточке товара после клика на картинку товара
-2) Успешный переход к карточке товара после клика на название товара
+1) Successful redirect to the product card after clicking on the item image
+2) Successful redirect to the product card after clicking on the item name
    
-### Оформление заказа
+## Checkout product
 
-1) Оформление заказа используя корректные данные
+1) Checkout an order using the correct data
    
-### Фильтр
+## Filters
 
-1) Проверка работоспособности фильтра (A to Z)
-2) Проверка работоспособности фильтра (Z to A)
-3) Проверка работоспособности фильтра (low to high)
-4) Проверка работоспособности фильтра (high to low)
+1) Checking the filter's performance (from A to Z)
+2) Checking the filter's performance (from Z to A)
+3) Checking the filter's performance (from low to high)
+4) Checking the filter's performance (from high to low)
    
-### Бургер меню
+## 'Burger' menu
 
-1) Выход из системы
-2) Проверка работоспособности кнопки "About" в меню
-3) Проверка работоспособности кнопки "Reset App State"
+1) Log Out
+2) Checking the functionality of the "About" button in the menu
+3) Checking the functionality of the "Reset App State" button
