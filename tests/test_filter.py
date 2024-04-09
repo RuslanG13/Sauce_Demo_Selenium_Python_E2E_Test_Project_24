@@ -1,10 +1,8 @@
-import time
-
 from locators.locators_saucedemo import InventoryPageLocators as IPL
 
 
 def test_check_filter_name_a_to_z(browser, auth_positive):
-    """Test checking filter functionality (A to Z)"""
+    """Test: checking filter functionality (A to Z)"""
     browser.find_element(*IPL.DROPDOWN_PRODUCT_SORT_CONTAINER_BTN).click()
     browser.find_element(*IPL.SORT_A_Z_DROPDOWN_ITEM).click()
 
@@ -16,7 +14,7 @@ def test_check_filter_name_a_to_z(browser, auth_positive):
 
 
 def test_check_filter_name_z_to_a(browser, auth_positive):
-    """Test checking filter functionality (Z to A)"""
+    """Test: checking filter functionality (Z to A)"""
 
     browser.find_element(*IPL.DROPDOWN_PRODUCT_SORT_CONTAINER_BTN).click()
     browser.find_element(*IPL.SORT_Z_A_DROPDOWN_ITEM).click()
@@ -29,7 +27,7 @@ def test_check_filter_name_z_to_a(browser, auth_positive):
 
 
 def test_check_filter_price_low_to_high(browser, auth_positive):
-    """Test checking filter functionality (low to high)"""
+    """Test: checking filter functionality (low to high)"""
 
     browser.find_element(*IPL.DROPDOWN_PRODUCT_SORT_CONTAINER_BTN).click()
     browser.find_element(*IPL.SORT_LOW_HIGH_DROPDOWN_ITEM).click()
@@ -42,7 +40,7 @@ def test_check_filter_price_low_to_high(browser, auth_positive):
 
 
 def test_check_filter_price_high_to_low(browser, auth_positive):
-    """Test checking filter functionality (high to low)"""
+    """Test: checking filter functionality (high to low)"""
 
     browser.find_element(*IPL.DROPDOWN_PRODUCT_SORT_CONTAINER_BTN).click()
     browser.find_element(*IPL.SORT_HIGH_LOW_DROPDOWN_ITEM).click()

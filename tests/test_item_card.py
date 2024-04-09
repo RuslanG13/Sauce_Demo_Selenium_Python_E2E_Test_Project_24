@@ -4,7 +4,7 @@ from data.utils import rand_index
 
 
 def test_successful_redirect_to_item_card_after_click_item_image(browser, auth_positive):
-    """Test successful redirect to the item card after clicking on the item image"""
+    """Test: successful redirect to the item card after clicking on the item image"""
 
     list_catalog_items = browser.find_elements(*IPL.INVENTORY_ITEMS)
     list_catalog_items_image = browser.find_elements(*IPL.INVENTORY_ITEMS_CARD_LINK_IMAGE)
@@ -21,7 +21,7 @@ def test_successful_redirect_to_item_card_after_click_item_image(browser, auth_p
 
 
 def test_successful_redirect_to_item_card_after_click_item_name(browser, auth_positive):
-    """Test successful redirect to the item card after clicking on the item name"""
+    """Test: successful redirect to the item card after clicking on the item name"""
 
     list_catalog_items_name = browser.find_elements(*IPL.INVENTORY_ITEM_NAME)
 
