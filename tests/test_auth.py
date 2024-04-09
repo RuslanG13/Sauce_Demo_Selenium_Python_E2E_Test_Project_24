@@ -1,9 +1,7 @@
 from locators.locators_saucedemo import LoginPageLocators as LPL
 from locators.locators_saucedemo import InventoryPageLocators as IPL
 
-from data import urls
-from data import page_elements_data
-from data import input_data
+from data import urls, page_elements_data, input_data
 
 
 def test_auth_positive(browser, auth_positive):

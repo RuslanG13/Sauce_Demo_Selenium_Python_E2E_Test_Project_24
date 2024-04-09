@@ -3,9 +3,7 @@ import pytest
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 
-from data import urls
-from data import input_data
-from data import page_elements_data
+from data import urls, input_data, page_elements_data
 from data.utils import rand_index
 
 from locators.locators_saucedemo import LoginPageLocators as LPL
