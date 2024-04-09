@@ -6,8 +6,8 @@ from data import page_elements_data
 from data.utils import fake_data
 
 
-def test_checkout_with_valid_data(browser, auth_positive, add_item_to_cart_through_catalog):
-    """Test: checkout using correct data"""
+def test_product_checkout_with_valid_data(browser, auth_positive, add_item_to_cart_through_catalog):
+    """Test: checkout product using correct data"""
 
     browser.find_element(*IPL.SHOPPING_CART_BADGE).click()
 
@@ -43,5 +43,6 @@ def test_checkout_with_valid_data(browser, auth_positive, add_item_to_cart_throu
     green_tick_img = browser.find_element(*CheckPL.GREEN_TICK)
     green_tick_img_alt_text = green_tick_img.get_attribute("alt")
 
-    assert complete_checkout_header_text == page_elements_data.complete_checkout_header, "complete header does not match"
+    assert complete_checkout_header_text == page_elements_data.complete_checkout_header, \
+        "complete header does not match"
     assert green_tick_img_alt_text == page_elements_data.green_tick_img_alt_text
