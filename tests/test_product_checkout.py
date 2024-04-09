@@ -3,7 +3,7 @@ from locators.locators_saucedemo import CartPageLocators as CPL
 from locators.locators_saucedemo import CheckoutPageLocators as CheckPL
 
 from data import page_elements_data
-from data.utils import fake_data
+from data.utils import fake_first_name_data, fake_last_name_data, fake_post_code_data
 
 
 def test_product_checkout_with_valid_data(browser, auth_positive, add_item_to_cart_through_catalog):
@@ -20,7 +20,9 @@ def test_product_checkout_with_valid_data(browser, auth_positive, add_item_to_ca
 
     checkout_button.click()
 
-    first_name_data, last_name_data, postalcode = fake_data()
+    first_name_data = fake_first_name_data()
+    last_name_data = fake_last_name_data()
+    postalcode_data = fake_post_code_data()
 
     first_name_field = browser.find_element(*CheckPL.FIRST_NAME_FIELD)
     first_name_field.send_keys(first_name_data)
@@ -29,11 +31,11 @@ def test_product_checkout_with_valid_data(browser, auth_positive, add_item_to_ca
     last_name_field.send_keys(last_name_data)
 
     postalcode_field = browser.find_element(*CheckPL.POSTAL_CODE_FIELD)
-    postalcode_field.send_keys(postalcode)
+    postalcode_field.send_keys(postalcode_data)
 
     assert first_name_field.get_attribute("value") == first_name_data, "Entered first name data does not match"
     assert last_name_field.get_attribute("value") == last_name_data, "Entered last name data does not match"
-    assert postalcode_field.get_attribute("value") == postalcode, "Entered postalcode data does not match"
+    assert postalcode_field.get_attribute("value") == postalcode_data, "Entered postalcode data does not match"
 
     browser.find_element(*CheckPL.CONTINUE_BUTTON).click()
     browser.find_element(*CheckPL.FINISH_BUTTON).click()

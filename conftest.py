@@ -76,9 +76,9 @@ def add_item_to_cart_through_item_card(browser, auth_positive):
 
     browser.find_element(*ICD.ADD_TO_CART_BUTTON).click()
 
-    numbers_of_items_in_shop_cart = int(browser.find_element(*IPL.SHOPPING_CART_BADGE).text)
+    numbers_of_items_in_shop_cart_in_badge = int(browser.find_element(*IPL.SHOPPING_CART_BADGE).text)
 
-    assert numbers_of_items_in_shop_cart == page_elements_data.count_items_in_cart[0], \
+    assert numbers_of_items_in_shop_cart_in_badge == page_elements_data.count_items_in_cart[0], \
         f"The number in shopping cart badge is different than {page_elements_data.count_items_in_cart[0]}"
 
 
