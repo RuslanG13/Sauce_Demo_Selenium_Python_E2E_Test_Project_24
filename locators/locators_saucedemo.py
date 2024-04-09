@@ -1,3 +1,6 @@
+class AboutSauceLabPageLocators:
+    SAUCELABS_LOGO = ("xpath", "//img[@src='/images/logo.svg']")
+
 class LoginPageLocators:
     USERNAME_FIELD = ("xpath", "//input[@id='user-name']")
     PASSWORD_FIELD = ("xpath", "//input[@id='password']")
@@ -9,6 +12,8 @@ class LoginPageLocators:
 
 
 class InventoryPageLocators:
+    PRODUCTS_TITLE = ("xpath", "//span[@data-test='title']")
+
     ADD_TO_CART_BUTTON = ("xpath", "//button[@class='btn btn_primary btn_small btn_inventory ']")
     REMOVE_BUTTON = ("xpath", "//button[@class='btn btn_secondary btn_small btn_inventory ']")
     SHOPPING_CART_LINK = ("xpath", "//a[@data-test='shopping-cart-link']")
@@ -29,7 +34,8 @@ class InventoryPageLocators:
 
     BURGER_MENU_BUTTON = ("xpath", "//button[@id='react-burger-menu-btn']")
     LOGOUT_SIDEBAR_LINK = ("xpath", "//a[@id='logout_sidebar_link']")
-    PRODUCTS_TITLE = ("xpath", "//span[@data-test='title']")
+    ABOUT_SIDEBAR_LINK = ("xpath", "//a[@id='about_sidebar_link']")
+
 
 class CartPageLocators:
     CART_ITEMS = ("xpath", "//div[@class='cart_item']")
