@@ -1,7 +1,5 @@
 import time
 
-from data import page_elements_data
-
 from locators.locators_saucedemo import InventoryPageLocators as IPL
 
 
@@ -41,3 +39,16 @@ def test_check_filter_price_low_to_high(browser, auth_positive):
     sorted_low_to_high_list = sorted(list_items_price_text)
 
     assert list_items_price_text == sorted_low_to_high_list, "Items sort low to high is not correct"
+
+
+def test_check_filter_price_high_to_low(browser, auth_positive):
+    """Test checking filter functionality (high to low)"""
+
+    browser.find_element(*IPL.DROPDOWN_PRODUCT_SORT_CONTAINER_BTN).click()
+    browser.find_element(*IPL.SORT_HIGH_LOW_DROPDOWN_ITEM).click()
+
+    item_names = browser.find_elements(*IPL.INVENTORY_ITEMS_PRICE)
+    list_items_price_text = [float(item.text[1:]) for item in item_names]
+    sorted_high_to_low_list = sorted(list_items_price_text, reverse=True)
+
+    assert list_items_price_text == sorted_high_to_low_list, "Items sort high to low is not correct"
