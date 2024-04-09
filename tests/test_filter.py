@@ -12,7 +12,7 @@ def test_check_filter_name_a_to_z(browser, auth_positive):
     list_items_name_text = [item.text for item in item_names]
     sorted_a_to_z_list = sorted(list_items_name_text)
 
-    assert list_items_name_text == sorted_a_to_z_list, "Items sort A to Z is not correct"
+    assert list_items_name_text == sorted_a_to_z_list, "Items name sort A to Z is not correct"
 
 
 def test_check_filter_name_z_to_a(browser, auth_positive):
@@ -25,7 +25,7 @@ def test_check_filter_name_z_to_a(browser, auth_positive):
     list_items_name_text = [item.text for item in item_names]
     sorted_z_to_a_list = sorted(list_items_name_text, reverse=True)
 
-    assert list_items_name_text == sorted_z_to_a_list, "Items sort Z to A is not correct"
+    assert list_items_name_text == sorted_z_to_a_list, "Items name sort Z to A is not correct"
 
 
 def test_check_filter_price_low_to_high(browser, auth_positive):
@@ -38,7 +38,7 @@ def test_check_filter_price_low_to_high(browser, auth_positive):
     list_items_price_text = [float(item.text[1:]) for item in item_names]
     sorted_low_to_high_list = sorted(list_items_price_text)
 
-    assert list_items_price_text == sorted_low_to_high_list, "Items sort low to high is not correct"
+    assert list_items_price_text == sorted_low_to_high_list, "Items price sort low to high is not correct"
 
 
 def test_check_filter_price_high_to_low(browser, auth_positive):
@@ -51,4 +51,4 @@ def test_check_filter_price_high_to_low(browser, auth_positive):
     list_items_price_text = [float(item.text[1:]) for item in item_names]
     sorted_high_to_low_list = sorted(list_items_price_text, reverse=True)
 
-    assert list_items_price_text == sorted_high_to_low_list, "Items sort high to low is not correct"
+    assert list_items_price_text == sorted_high_to_low_list, "Items price sort high to low is not correct"
