@@ -6,6 +6,7 @@ from data import urls, page_elements_data, input_data
 
 def test_auth_positive(browser, auth_positive):
     """Test: authorization using correct data"""
+
     inventory_page_title = browser.find_element(*IPL.PRODUCTS_TITLE).text
 
     assert browser.current_url == urls.INVENTORY_PAGE_ENDPOINT, "a user isn't at inventory page"
@@ -14,6 +15,7 @@ def test_auth_positive(browser, auth_positive):
 
 def test_auth_negative(browser):
     """Test: authorization using incorrect data"""
+
     browser.get(urls.BASE_URL)
 
     browser.find_element(*LPL.USERNAME_FIELD).send_keys(input_data.username_invalid)

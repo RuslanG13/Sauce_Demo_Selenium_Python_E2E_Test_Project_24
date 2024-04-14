@@ -3,6 +3,7 @@ from locators.locators_saucedemo import InventoryPageLocators as IPL
 
 def test_check_by_name_a_to_z(browser, auth_positive):
     """Test: checking filter functionality (A to Z)"""
+
     browser.find_element(*IPL.DROPDOWN_PRODUCT_SORT_CONTAINER_BTN).click()
     browser.find_element(*IPL.SORT_A_Z_DROPDOWN_ITEM).click()
 
