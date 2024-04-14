@@ -51,6 +51,7 @@ class CartPageLocators:
     BURGER_MENU_BUTTON = ("xpath", "//button[@id='react-burger-menu-btn']")
     RESET_APP_STATE_LINK = ("xpath", "//a[@id='reset_sidebar_link']")
 
+
 class ItemCardDetailLocators:
     ADD_TO_CART_BUTTON = ("xpath", "//button[@id='add-to-cart']")
     ITEM_NAME = ("xpath", "//div[@class='inventory_details_name large_size']")
