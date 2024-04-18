@@ -1,6 +1,6 @@
 import pytest
 
-from locators.locators_saucedemo import LoginPageLocators as LPL
+from locators.login_page import LoginPageLocators as LPL
 from locators.locators_saucedemo import InventoryPageLocators as IPL
 from locators.locators_saucedemo import AboutSauceLabPageLocators as ASLPL
 from locators.locators_saucedemo import CartPageLocators as CPL

@@ -2,13 +2,11 @@ import pytest
 
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
 
 from data import urls, input_data, page_elements_data
 from data.utils import rand_index
 
-from locators.locators_saucedemo import LoginPageLocators as LPL
+from locators.login_page import LoginPageLocators as LPL
 from locators.locators_saucedemo import InventoryPageLocators as IPL
 from locators.locators_saucedemo import ItemCardDetailLocators as ICD
 from locators.locators_saucedemo import CartPageLocators as CPL
@@ -28,12 +26,6 @@ def driver():
     driver.implicitly_wait(10)
     yield driver
     driver.quit()
-
-
-@pytest.fixture()
-def wait(driver):
-    wait = WebDriverWait(driver, 10, poll_frequency=1)
-    yield wait
 
 
 @pytest.fixture()

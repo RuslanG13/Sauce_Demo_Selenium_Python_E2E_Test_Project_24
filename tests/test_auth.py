@@ -1,4 +1,6 @@
-from locators.locators_saucedemo import LoginPageLocators as LPL
+from pages.base_page import BasePage
+
+from locators.login_page import LoginPageLocators as LPL
 from locators.locators_saucedemo import InventoryPageLocators as IPL
 
 from data import urls, page_elements_data, input_data
@@ -8,6 +10,7 @@ class TestAuth:
     def test_auth_positive(self, driver, auth_positive):
         """Test: authorization using correct data"""
 
+        base_page = BasePage(driver, urls.BASE_URL)
         inventory_page_title = driver.find_element(*IPL.PRODUCTS_TITLE).text
 
         assert driver.current_url == urls.INVENTORY_PAGE_ENDPOINT, "a user isn't at inventory page"
