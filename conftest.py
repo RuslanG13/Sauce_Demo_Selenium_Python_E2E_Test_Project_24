@@ -10,7 +10,7 @@ from data.login_credentials import valid_login
 from data.utils import rand_index
 
 from locators.login_locators import LoginPageLocators as lpl
-from locators.locators_saucedemo import InventoryPageLocators as IPL
+from locators.main_locators import MainPageLocators as mpl
 from locators.locators_saucedemo import ItemCardDetailLocators as ICD
 from locators.locators_saucedemo import CartPageLocators as CPL
 
@@ -47,14 +47,14 @@ def auth_positive(driver):
 def add_item_to_cart_through_catalog(driver, auth_positive):
     """Fixture: add item to cart through catalog"""
 
-    list_catalog_items = driver.find_elements(*IPL.INVENTORY_ITEMS)
-    list_add_to_cart_btn = driver.find_elements(*IPL.ADD_TO_CART_BUTTON)
+    list_catalog_items = driver.find_elements(*mpl.INVENTORY_ITEMS)
+    list_add_to_cart_btn = driver.find_elements(*mpl.ADD_TO_CART_BUTTON)
 
     selected_item_idx = rand_index(len(list_catalog_items))
     selected_item_name = list_catalog_items[selected_item_idx].text.split("\n")[0]
 
     list_add_to_cart_btn[selected_item_idx].click()
-    numbers_of_items_in_shop_cart = int(driver.find_element(*IPL.SHOPPING_CART_BADGE).text)
+    numbers_of_items_in_shop_cart = int(driver.find_element(*mpl.SHOPPING_CART_BADGE).text)
 
     assert selected_item_name in MainData.catalog_items_names, \
         "The selected item not present in catalog"
@@ -66,8 +66,8 @@ def add_item_to_cart_through_catalog(driver, auth_positive):
 def add_item_to_cart_through_item_card(driver, auth_positive):
     """Fixture: add item to cart through item card"""
 
-    list_catalog_items = driver.find_elements(*IPL.INVENTORY_ITEMS)
-    list_items_card_link = driver.find_elements(*IPL.INVENTORY_ITEMS_CARD_LINK_IMAGE)
+    list_catalog_items = driver.find_elements(*mpl.INVENTORY_ITEMS)
+    list_items_card_link = driver.find_elements(*mpl.INVENTORY_ITEMS_CARD_LINK_IMAGE)
     selected_item_idx = rand_index(len(list_catalog_items))
     selected_item_name_catalog = list_catalog_items[selected_item_idx].text.split("\n")[0]
 
@@ -80,7 +80,7 @@ def add_item_to_cart_through_item_card(driver, auth_positive):
 
     driver.find_element(*ICD.ADD_TO_CART_BUTTON).click()
 
-    numbers_of_items_in_shop_cart_in_badge = int(driver.find_element(*IPL.SHOPPING_CART_BADGE).text)
+    numbers_of_items_in_shop_cart_in_badge = int(driver.find_element(*mpl.SHOPPING_CART_BADGE).text)
 
     assert numbers_of_items_in_shop_cart_in_badge == MainData.count_items_in_cart[0], \
         f"The number in shopping cart badge is different than {MainData.count_items_in_cart[0]}"
@@ -90,7 +90,7 @@ def add_item_to_cart_through_item_card(driver, auth_positive):
 def check_exist_item_in_cart(driver, auth_positive):
     """Fixture: check the added item in shopping cart"""
 
-    driver.find_element(*IPL.SHOPPING_CART_BADGE).click()
+    driver.find_element(*mpl.SHOPPING_CART_BADGE).click()
 
     amount_items_in_cart = len(driver.find_elements(*CPL.CART_ITEMS))
 

@@ -1,4 +1,4 @@
-from locators.main_locators import MainPageLocators as MPL
+from locators.main_locators import MainPageLocators as mpl
 from locators.locators_saucedemo import ItemCardDetailLocators as ICD
 
 from data.utils import rand_index
@@ -8,8 +8,8 @@ class TestProductCard:
     def test_redirect_to_product_card_after_click_product_image(self, driver, auth_positive):
         """Test: successful redirect to the product card after clicking on the product image"""
 
-        list_catalog_items = driver.find_elements(*MPL.INVENTORY_ITEMS)
-        list_catalog_items_image = driver.find_elements(*MPL.INVENTORY_ITEMS_CARD_LINK_IMAGE)
+        list_catalog_items = driver.find_elements(*mpl.INVENTORY_ITEMS)
+        list_catalog_items_image = driver.find_elements(*mpl.INVENTORY_ITEMS_CARD_LINK_IMAGE)
 
         selected_item_idx = rand_index(len(list_catalog_items))
         selected_item_name_on_catalog = list_catalog_items[selected_item_idx].text.split("\n")[0]
@@ -24,7 +24,7 @@ class TestProductCard:
     def test_redirect_to_product_card_after_click_product_name(self, driver, auth_positive):
         """Test: successful redirect to the product card after clicking on the product name"""
 
-        list_catalog_items_name = driver.find_elements(*MPL.INVENTORY_ITEM_NAME)
+        list_catalog_items_name = driver.find_elements(*mpl.INVENTORY_ITEM_NAME)
 
         selected_item_idx = rand_index(len(list_catalog_items_name))
         selected_item_name_on_catalog = list_catalog_items_name[selected_item_idx].text

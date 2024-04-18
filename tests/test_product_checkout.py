@@ -1,4 +1,4 @@
-from locators.main_locators import MainPageLocators as MPL
+from locators.main_locators import MainPageLocators as mlp
 from locators.locators_saucedemo import CartPageLocators as CPL
 from locators.locators_saucedemo import CheckoutPageLocators as CheckPL
 
@@ -10,10 +10,10 @@ class TestProductCheckout:
     def test_product_checkout_with_valid_data(self, driver, auth_positive, add_item_to_cart_through_catalog):
         """Test: checkout product using correct data"""
 
-        driver.find_element(*MPL.SHOPPING_CART_BADGE).click()
+        driver.find_element(*mlp.SHOPPING_CART_BADGE).click()
 
         checkout_button = driver.find_element(*CPL.CHECKOUT_BUTTON)
-        numbers_of_items_in_shop_cart = int(driver.find_element(*MPL.SHOPPING_CART_BADGE).text)
+        numbers_of_items_in_shop_cart = int(driver.find_element(*mlp.SHOPPING_CART_BADGE).text)
 
         assert checkout_button, "A user isn't at cart page"
         assert numbers_of_items_in_shop_cart == page_elements_data.count_items_in_cart[0], \
