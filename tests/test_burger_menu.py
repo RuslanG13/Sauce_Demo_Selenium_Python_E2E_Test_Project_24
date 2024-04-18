@@ -1,7 +1,7 @@
 import pytest
 
 from locators.login_locators import LoginPageLocators as LPL
-from locators.locators_saucedemo import InventoryPageLocators as IPL
+from locators.main_locators import MainPageLocators as MPL
 from locators.locators_saucedemo import AboutSauceLabPageLocators as ASLPL
 from locators.locators_saucedemo import CartPageLocators as CPL
 
@@ -13,8 +13,8 @@ class TestBurgerMenu:
     def test_log_out(self, driver, auth_positive):
         """Test: log out from the product"""
 
-        driver.find_element(*IPL.BURGER_MENU_BUTTON).click()
-        driver.find_element(*IPL.LOGOUT_SIDEBAR_LINK).click()
+        driver.find_element(*MPL.BURGER_MENU_BUTTON).click()
+        driver.find_element(*MPL.LOGOUT_SIDEBAR_LINK).click()
 
         login_button = driver.find_element(*LPL.LOGIN_BUTTON_LOCATOR)
 
@@ -23,8 +23,8 @@ class TestBurgerMenu:
     def test_about_button(self, driver, auth_positive):
         """Test: the functionality of the “About” button in the burger menu"""
 
-        driver.find_element(*IPL.BURGER_MENU_BUTTON).click()
-        driver.find_element(*IPL.ABOUT_SIDEBAR_LINK).click()
+        driver.find_element(*MPL.BURGER_MENU_BUTTON).click()
+        driver.find_element(*MPL.ABOUT_SIDEBAR_LINK).click()
 
         saucelabs_logo = driver.find_element(*ASLPL.SAUCELABS_LOGO)
         alt_text_logo = saucelabs_logo.get_attribute("alt")

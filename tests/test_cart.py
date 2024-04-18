@@ -1,4 +1,4 @@
-from locators.locators_saucedemo import InventoryPageLocators as IPL
+from locators.main_locators import MainPageLocators as MPL
 from locators.locators_saucedemo import CartPageLocators as CPL
 from locators.locators_saucedemo import ItemCardDetailLocators as ICD
 
@@ -10,10 +10,10 @@ class TestCart:
     def test_add_item_through_catalog(self, driver, auth_positive, add_item_to_cart_through_catalog):
         """Test: adding an item to the cart from through catalog"""
 
-        driver.find_element(*IPL.SHOPPING_CART_BADGE).click()
+        driver.find_element(*MPL.SHOPPING_CART_BADGE).click()
 
         checkout_button = driver.find_element(*CPL.CHECKOUT_BUTTON)
-        numbers_of_items_in_shop_cart = int(driver.find_element(*IPL.SHOPPING_CART_BADGE).text)
+        numbers_of_items_in_shop_cart = int(driver.find_element(*MPL.SHOPPING_CART_BADGE).text)
 
         assert checkout_button, "A user isn't at cart page"
         assert numbers_of_items_in_shop_cart == page_elements_data.count_items_in_cart[0], \
@@ -29,10 +29,10 @@ class TestCart:
     def test_delete_item(self, driver, auth_positive, add_item_to_cart_through_catalog):
         """Test: deleting an item from the cart"""
 
-        driver.find_element(*IPL.SHOPPING_CART_BADGE).click()
+        driver.find_element(*MPL.SHOPPING_CART_BADGE).click()
 
         checkout_button = driver.find_element(*CPL.CHECKOUT_BUTTON)
-        numbers_of_items_in_shop_cart = int(driver.find_element(*IPL.SHOPPING_CART_BADGE).text)
+        numbers_of_items_in_shop_cart = int(driver.find_element(*MPL.SHOPPING_CART_BADGE).text)
 
         assert checkout_button, "A user isn't at cart page"
         assert numbers_of_items_in_shop_cart == page_elements_data.count_items_in_cart[0], \
