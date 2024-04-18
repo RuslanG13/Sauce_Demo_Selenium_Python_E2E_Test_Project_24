@@ -1,2 +1,2 @@
 BASE_URL = "https://www.saucedemo.com/"
-INVENTORY_PAGE_ENDPOINT = "https://www.saucedemo.com/inventory.html"
+MAIN_PAGE_URL = "https://www.saucedemo.com/inventory.html"

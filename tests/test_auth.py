@@ -2,8 +2,10 @@ from pages.base_page import BasePage
 
 from locators.login_locators import LoginPageLocators as LPL
 from locators.locators_saucedemo import InventoryPageLocators as IPL
+from data.page_data.login_data import LoginData
+from data.page_data.main_data import MainData
 
-from data import urls, page_elements_data
+from data import urls
 from data.login_credentials import invalid_login
 
 
@@ -14,8 +16,8 @@ class TestAuth:
         # base_page = BasePage(driver, urls.BASE_URL)
         inventory_page_title = driver.find_element(*IPL.PRODUCTS_TITLE).text
 
-        assert driver.current_url == urls.INVENTORY_PAGE_ENDPOINT, "a user isn't at inventory page"
-        assert inventory_page_title == page_elements_data.products_title, "wrong inventory page products title"
+        assert driver.current_url == urls.MAIN_PAGE_URL, "a user isn't at inventory page"
+        assert inventory_page_title == MainData.products_title, "wrong inventory page products title"
 
     def test_auth_negative(self, driver):
         """Test: authorization using incorrect data"""
@@ -32,6 +34,6 @@ class TestAuth:
                                                .value_of_css_property("background-color"))
 
         assert driver.current_url == urls.BASE_URL, "a user isn't at login page"
-        assert login_error_elem.text == page_elements_data.login_error_text, "error message is wrong"
-        assert background_color_of_error_container == page_elements_data.background_color_error_container, \
+        assert login_error_elem.text == LoginData.login_error_text, "error message is wrong"
+        assert background_color_of_error_container == LoginData.background_color_error_container, \
             "background color of error container is incorrect"

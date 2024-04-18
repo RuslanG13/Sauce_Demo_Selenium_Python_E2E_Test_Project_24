@@ -3,6 +3,7 @@ from locators.locators_saucedemo import CartPageLocators as CPL
 from locators.locators_saucedemo import ItemCardDetailLocators as ICD
 
 from data import page_elements_data
+from data.page_data.main_data import MainData
 
 
 class TestCart:

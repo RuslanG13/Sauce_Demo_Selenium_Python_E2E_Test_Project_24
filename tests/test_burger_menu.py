@@ -5,7 +5,8 @@ from locators.locators_saucedemo import InventoryPageLocators as IPL
 from locators.locators_saucedemo import AboutSauceLabPageLocators as ASLPL
 from locators.locators_saucedemo import CartPageLocators as CPL
 
-from data import page_elements_data
+
+from data.page_data.base_data import BaseData
 
 
 class TestBurgerMenu:
@@ -29,8 +30,8 @@ class TestBurgerMenu:
         alt_text_logo = saucelabs_logo.get_attribute("alt")
 
         assert saucelabs_logo, "The Sauce Labs logo is not shown"
-        assert alt_text_logo == page_elements_data.sauce_labs_logo_alt_text, \
-            f"The {alt_text_logo} is not equal to the {page_elements_data.sauce_labs_logo_alt_text}"
+        assert alt_text_logo == BaseData.sauce_labs_logo_alt_text, \
+            f"The {alt_text_logo} is not equal to the {BaseData.sauce_labs_logo_alt_text}"
 
     @pytest.mark.xfail
     def test_reset_app_state_button(self, driver, auth_positive, add_item_to_cart_through_catalog,

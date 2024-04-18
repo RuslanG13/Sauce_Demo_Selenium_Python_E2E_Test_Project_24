@@ -4,6 +4,8 @@ from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 
 from data import urls, page_elements_data
+from data.page_data.login_data import LoginData
+from data.page_data.main_data import MainData
 from data.login_credentials import valid_login
 from data.utils import rand_index
 
@@ -54,10 +56,10 @@ def add_item_to_cart_through_catalog(driver, auth_positive):
     list_add_to_cart_btn[selected_item_idx].click()
     numbers_of_items_in_shop_cart = int(driver.find_element(*IPL.SHOPPING_CART_BADGE).text)
 
-    assert selected_item_name in page_elements_data.catalog_items_names, \
+    assert selected_item_name in MainData.catalog_items_names, \
         "The selected item not present in catalog"
-    assert numbers_of_items_in_shop_cart == page_elements_data.count_items_in_cart[0], \
-        f"The number in shopping cart badge is different than {page_elements_data.count_items_in_cart[0]}"
+    assert numbers_of_items_in_shop_cart == MainData.count_items_in_cart[0], \
+        f"The number in shopping cart badge is different than {MainData.count_items_in_cart[0]}"
 
 
 @pytest.fixture()
@@ -80,8 +82,8 @@ def add_item_to_cart_through_item_card(driver, auth_positive):
 
     numbers_of_items_in_shop_cart_in_badge = int(driver.find_element(*IPL.SHOPPING_CART_BADGE).text)
 
-    assert numbers_of_items_in_shop_cart_in_badge == page_elements_data.count_items_in_cart[0], \
-        f"The number in shopping cart badge is different than {page_elements_data.count_items_in_cart[0]}"
+    assert numbers_of_items_in_shop_cart_in_badge == MainData.count_items_in_cart[0], \
+        f"The number in shopping cart badge is different than {MainData.count_items_in_cart[0]}"
 
 
 @pytest.fixture()
