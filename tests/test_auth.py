@@ -3,7 +3,7 @@ from pages.base_page import BasePage
 from locators.login_locators import LoginPageLocators as LPL
 from locators.locators_saucedemo import InventoryPageLocators as IPL
 
-from data import urls, page_elements_data, input_data
+from data import urls, page_elements_data, login_credentials
 
 
 class TestAuth:
@@ -21,13 +21,13 @@ class TestAuth:
 
         driver.get(urls.BASE_URL)
 
-        driver.find_element(*LPL.USERNAME_FIELD).send_keys(input_data.username_invalid)
-        driver.find_element(*LPL.PASSWORD_FIELD).send_keys(input_data.password_invalid)
+        driver.find_element(*LPL.USERNAME_FIELD_LOCATOR).send_keys(input_data.username_invalid)
+        driver.find_element(*LPL.PASSWORD_FIELD_LOCATOR).send_keys(input_data.password_invalid)
 
-        driver.find_element(*LPL.LOGIN_BUTTON).click()
+        driver.find_element(*LPL.LOGIN_BUTTON_LOCATOR).click()
 
-        login_error_elem = driver.find_element(*LPL.ERROR_LOGIN_MESSAGE)
-        background_color_of_error_container = (driver.find_element(*LPL.ERROR_MESSAGE_CONTAINER)
+        login_error_elem = driver.find_element(*LPL.ERROR_LOGIN_MESSAGE_LOCATOR)
+        background_color_of_error_container = (driver.find_element(*LPL.ERROR_MESSAGE_CONTAINER_LOCATOR)
                                                .value_of_css_property("background-color"))
 
         assert driver.current_url == urls.BASE_URL, "a user isn't at login page"

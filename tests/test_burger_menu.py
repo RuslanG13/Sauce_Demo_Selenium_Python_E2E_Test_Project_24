@@ -15,7 +15,7 @@ class TestBurgerMenu:
         driver.find_element(*IPL.BURGER_MENU_BUTTON).click()
         driver.find_element(*IPL.LOGOUT_SIDEBAR_LINK).click()
 
-        login_button = driver.find_element(*LPL.LOGIN_BUTTON)
+        login_button = driver.find_element(*LPL.LOGIN_BUTTON_LOCATOR)
 
         assert login_button, "The user is not on the login page"
 

@@ -3,7 +3,7 @@ import pytest
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 
-from data import urls, input_data, page_elements_data
+from data import urls, login_credentials, page_elements_data
 from data.utils import rand_index
 
 from locators.login_locators import LoginPageLocators as LPL
@@ -34,10 +34,10 @@ def auth_positive(driver):
 
     driver.get(urls.BASE_URL)
 
-    driver.find_element(*LPL.USERNAME_FIELD).send_keys(input_data.username_valid)
-    driver.find_element(*LPL.PASSWORD_FIELD).send_keys(input_data.password_valid)
+    driver.find_element(*LPL.USERNAME_FIELD_LOCATOR).send_keys(input_data.username_valid)
+    driver.find_element(*LPL.PASSWORD_FIELD_LOCATOR).send_keys(input_data.password_valid)
 
-    driver.find_element(*LPL.LOGIN_BUTTON).click()
+    driver.find_element(*LPL.LOGIN_BUTTON_LOCATOR).click()
 
 
 @pytest.fixture()
