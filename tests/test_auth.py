@@ -14,8 +14,6 @@ from data.login_credentials import invalid_login
 class TestAuth:
     urls = Urls()
 
-    # main_url = urls.MAIN_PAGE_URL
-
     def test_auth_positive(self, driver):
         """Test: authorization using correct data"""
 
