@@ -1,6 +1,6 @@
 from pages.base_page import BasePage
 
-from locators.login_page import LoginPageLocators as LPL
+from locators.login_locators import LoginPageLocators as LPL
 from locators.locators_saucedemo import InventoryPageLocators as IPL
 
 from data import urls, page_elements_data, input_data

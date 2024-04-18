@@ -6,7 +6,7 @@ from selenium.webdriver.chrome.options import Options
 from data import urls, input_data, page_elements_data
 from data.utils import rand_index
 
-from locators.login_page import LoginPageLocators as LPL
+from locators.login_locators import LoginPageLocators as LPL
 from locators.locators_saucedemo import InventoryPageLocators as IPL
 from locators.locators_saucedemo import ItemCardDetailLocators as ICD
 from locators.locators_saucedemo import CartPageLocators as CPL
