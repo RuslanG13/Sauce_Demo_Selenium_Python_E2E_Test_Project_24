@@ -1,8 +1,6 @@
-from pages.login_page import LoginPage
+from pages.base_page import BasePage
 
 
-class MainPage(LoginPage):
+class MainPage(BasePage):
     def __init__(self, driver, url):
-        super().__init__(self, driver=driver, url=url)
-
-
+        super().__init__(driver, url)

@@ -1,2 +1,3 @@
-BASE_URL = "https://www.saucedemo.com/"
-MAIN_PAGE_URL = "https://www.saucedemo.com/inventory.html"
+class Urls:
+    BASE_URL = "https://www.saucedemo.com/"
+    MAIN_PAGE_URL = "https://www.saucedemo.com/inventory.html"

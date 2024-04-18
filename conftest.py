@@ -3,7 +3,8 @@ import pytest
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 
-from data import urls, page_elements_data
+from data import page_elements_data
+from data.urls import Urls
 from data.page_data.login_data import LoginData
 from data.page_data.main_data import MainData
 from data.login_credentials import valid_login
@@ -35,7 +36,7 @@ def driver():
 def auth_positive(driver):
     """Fixture: Positive authentication on the https://www.saucedemo.com"""
 
-    driver.get(urls.BASE_URL)
+    driver.get(Urls.BASE_URL)
 
     driver.find_element(*lpl.USERNAME_FIELD_LOCATOR).send_keys(valid_login["username_valid"])
     driver.find_element(*lpl.PASSWORD_FIELD_LOCATOR).send_keys(valid_login["password_valid"])

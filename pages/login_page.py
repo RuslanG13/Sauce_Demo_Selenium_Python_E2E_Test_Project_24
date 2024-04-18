@@ -1,11 +1,11 @@
-from base_page import BasePage
+from pages.base_page import BasePage
 from locators.login_locators import LoginPageLocators as lpl
 from data.login_credentials import valid_login
 
 
 class LoginPage(BasePage):
     def __init__(self, driver, url):
-        super().__init__(self, driver=driver, url=url)
+        super().__init__(driver, url)
 
     def login(self):
         self.element_is_visible(lpl.USERNAME_FIELD_LOCATOR).send_keys(valid_login["username_valid"])
