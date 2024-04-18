@@ -2,9 +2,6 @@ class AboutSauceLabPageLocators:
     SAUCELABS_LOGO = ("xpath", "//img[@src='/images/logo.svg']")
 
 
-
-
-
 class InventoryPageLocators:
     PRODUCTS_TITLE = ("xpath", "//span[@data-test='title']")
 

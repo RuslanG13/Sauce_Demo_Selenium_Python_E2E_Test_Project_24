@@ -3,14 +3,15 @@ from pages.base_page import BasePage
 from locators.login_locators import LoginPageLocators as LPL
 from locators.locators_saucedemo import InventoryPageLocators as IPL
 
-from data import urls, page_elements_data, login_credentials
+from data import urls, page_elements_data
+from data.login_credentials import invalid_login
 
 
 class TestAuth:
     def test_auth_positive(self, driver, auth_positive):
         """Test: authorization using correct data"""
 
-        base_page = BasePage(driver, urls.BASE_URL)
+        # base_page = BasePage(driver, urls.BASE_URL)
         inventory_page_title = driver.find_element(*IPL.PRODUCTS_TITLE).text
 
         assert driver.current_url == urls.INVENTORY_PAGE_ENDPOINT, "a user isn't at inventory page"
@@ -21,8 +22,8 @@ class TestAuth:
 
         driver.get(urls.BASE_URL)
 
-        driver.find_element(*LPL.USERNAME_FIELD_LOCATOR).send_keys(input_data.username_invalid)
-        driver.find_element(*LPL.PASSWORD_FIELD_LOCATOR).send_keys(input_data.password_invalid)
+        driver.find_element(*LPL.USERNAME_FIELD_LOCATOR).send_keys(invalid_login["username_invalid"])
+        driver.find_element(*LPL.PASSWORD_FIELD_LOCATOR).send_keys(invalid_login["username_invalid"])
 
         driver.find_element(*LPL.LOGIN_BUTTON_LOCATOR).click()
 

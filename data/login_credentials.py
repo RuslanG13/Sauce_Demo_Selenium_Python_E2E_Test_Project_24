@@ -5,5 +5,5 @@ valid_login = {
 
 invalid_login = {
     "username_invalid": "user",
-    "password_invalid": "user"
+    "username_invalid": "user"
 }
