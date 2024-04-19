@@ -1,3 +1,5 @@
+import pytest
+
 from pages.login_page import LoginPage
 from pages.main_page import MainPage
 
@@ -8,20 +10,28 @@ from data.page_data.login_data import LoginData
 from data.page_data.main_data import MainData
 
 from data.urls import Urls
-from data.login_credentials import invalid_login
+from data.login_credentials import valid_login, invalid_login
 
 
 class TestAuth:
     urls = Urls()
 
-    def test_auth_positive(self, driver):
-        """Test: authorization using correct data"""
-
+    @pytest.fixture()
+    def login_page(self, driver):
         login_page = LoginPage(driver, self.urls.BASE_URL)
         login_page.open_page()
-        login_page.login()
+        return login_page
 
+    @pytest.fixture()
+    def main_page(self, driver):
         main_page = MainPage(driver, self.urls.MAIN_PAGE_URL)
+        return main_page
+
+    def test_auth_positive(self, driver, login_page, main_page):
+        """Verify that a user successfully logged in with valid data"""
+
+        login_page.login(valid_login["username_valid"], valid_login["password_valid"])
+
         main_page_title_text = main_page.get_element_text(mpl.PRODUCTS_TITLE)
 
         assert main_page.get_url_text() == self.urls.MAIN_PAGE_URL, "The main page is not open. User is not logged in"
