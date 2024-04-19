@@ -40,6 +40,7 @@ class TestAuth:
     def test_auth_negative(self, driver, login_page, username, password):
         """Verify that a user will not be able to log in with invalid data"""
         login_page.login(username=username, password=password)
+
         login_error_text = login_page.get_element_text(lpl.ERROR_LOGIN_MESSAGE_LOCATOR)
         background_color_error_container = login_page.get_ccs_property(lpl.ERROR_MESSAGE_CONTAINER_LOCATOR,
                                                                        "background-color")
