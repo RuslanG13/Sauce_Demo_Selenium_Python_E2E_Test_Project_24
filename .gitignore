@@ -8,4 +8,5 @@
 __pycache__/
 
 # Ignore folder allure results
-allure-results
+results/
+allure-report/
