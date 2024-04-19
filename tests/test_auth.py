@@ -10,7 +10,6 @@ from data.page_data.login_data import LoginData
 from data.page_data.main_data import MainData
 
 from data.urls import Urls
-from data.login_credentials import valid_login, invalid_login
 
 
 class TestAuth:
@@ -29,29 +28,23 @@ class TestAuth:
 
     def test_auth_positive(self, driver, login_page, main_page):
         """Verify that a user successfully logged in with valid data"""
-
-        login_page.login(valid_login["username_valid"], valid_login["password_valid"])
+        login_page.login(username=LoginData.valid_login_data[0], password=LoginData.valid_login_data[1])
 
         main_page_title_text = main_page.get_element_text(mpl.PRODUCTS_TITLE)
 
-        assert main_page.get_url_text() == self.urls.MAIN_PAGE_URL, "The main page is not open. User is not logged in"
-        assert main_page_title_text == MainData.products_title, "Wrong main page products title"
+        assert (main_page.get_url_text() == self.urls.MAIN_PAGE_URL and \
+                main_page_title_text == MainData.products_title), "The main page is not open. User is not logged in"
 
-    def test_auth_negative(self, driver):
-        """Test: authorization using incorrect data"""
 
-        driver.get(self.urls.BASE_URL)
+    @pytest.mark.parametrize("username, password", LoginData.invalid_login_data)
+    def test_auth_negative(self, driver, login_page, username, password):
+        """Verify that a user will not be able to log in with invalid data"""
+        login_page.login(username=username, password=password)
+        login_error_text = login_page.get_element_text(lpl.ERROR_LOGIN_MESSAGE_LOCATOR)
+        background_color_error_container = login_page.get_ccs_property(lpl.ERROR_MESSAGE_CONTAINER_LOCATOR,
+                                                                       "background-color")
 
-        driver.find_element(*lpl.USERNAME_FIELD_LOCATOR).send_keys(invalid_login["username_invalid"])
-        driver.find_element(*lpl.PASSWORD_FIELD_LOCATOR).send_keys(invalid_login["username_invalid"])
-
-        driver.find_element(*lpl.LOGIN_BUTTON_LOCATOR).click()
-
-        login_error_elem = driver.find_element(*lpl.ERROR_LOGIN_MESSAGE_LOCATOR)
-        background_color_of_error_container = (driver.find_element(*lpl.ERROR_MESSAGE_CONTAINER_LOCATOR)
-                                               .value_of_css_property("background-color"))
-
-        assert driver.current_url == self.urls.BASE_URL, "a user isn't at login page"
-        assert login_error_elem.text == LoginData.login_error_text, "error message is wrong"
-        assert background_color_of_error_container == LoginData.background_color_error_container, \
-            "background color of error container is incorrect"
+        assert login_error_text == LoginData.login_error_text, \
+            f"The {login_error_text} is not equal {LoginData.login_error_text}"
+        assert background_color_error_container == LoginData.background_color_error_container, \
+            f"The {background_color_error_container} is different than {LoginData.background_color_error_container}"

@@ -7,7 +7,6 @@ from data import page_elements_data
 from data.urls import Urls
 from data.page_data.login_data import LoginData
 from data.page_data.main_data import MainData
-from data.login_credentials import valid_login
 from data.utils import rand_index
 
 from locators.login_locators import LoginPageLocators as lpl
@@ -38,8 +37,8 @@ def auth_positive(driver):
 
     driver.get(Urls.BASE_URL)
 
-    driver.find_element(*lpl.USERNAME_FIELD_LOCATOR).send_keys(valid_login["username_valid"])
-    driver.find_element(*lpl.PASSWORD_FIELD_LOCATOR).send_keys(valid_login["password_valid"])
+    driver.find_element(*lpl.USERNAME_FIELD_LOCATOR).send_keys(LoginData.valid_login_data[0])
+    driver.find_element(*lpl.PASSWORD_FIELD_LOCATOR).send_keys(LoginData.valid_login_data[1])
 
     driver.find_element(*lpl.LOGIN_BUTTON_LOCATOR).click()
 
