@@ -7,6 +7,6 @@
 # Ignore all files pycache
 __pycache__/
 
-# Ignore folder allure results
+# Ignore allure report data
 results/
 allure-report/

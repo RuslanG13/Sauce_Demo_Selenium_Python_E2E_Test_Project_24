@@ -22,3 +22,13 @@ def fake_post_code_data():
     faker = Faker()
     fake_post_code = faker.postcode()
     return fake_post_code
+
+
+def increase_test_case_num(start, end):
+    index = start
+    for start in range(end + 1):
+        start += 1
+    return index
+
+def get_len_list(list):
+    return len(list) + 1
