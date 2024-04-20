@@ -14,6 +14,11 @@ from locators.main_locators import MainPageLocators as mpl
 from locators.locators_saucedemo import ItemCardDetailLocators as ICD
 from locators.locators_saucedemo import CartPageLocators as CPL
 
+from pages.login_page import LoginPage
+from pages.main_page import MainPage
+
+urls = Urls()
+
 
 @pytest.fixture()
 def driver():
@@ -96,3 +101,18 @@ def check_exist_item_in_cart(driver, auth_positive):
 
     assert amount_items_in_cart == page_elements_data.count_items_in_cart[0], \
         f"The amount is different than {page_elements_data.count_items_in_cart[0]} or cart is empty"
+
+
+@pytest.fixture()
+def login_page(driver):
+    """Create and return Login page"""
+    login_page = LoginPage(driver, urls.BASE_URL)
+    login_page.open_page()
+    return login_page
+
+
+@pytest.fixture()
+def main_page(driver):
+    """Create and return Main page"""
+    main_page = MainPage(driver, urls.MAIN_PAGE_URL)
+    return main_page

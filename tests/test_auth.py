@@ -1,9 +1,6 @@
 import pytest
 import allure
 
-from pages.login_page import LoginPage
-from pages.main_page import MainPage
-
 from locators.login_locators import LoginPageLocators as lpl
 from locators.main_locators import MainPageLocators as mpl
 
@@ -17,17 +14,6 @@ from data.urls import Urls
 class TestAuth:
     urls = Urls()
 
-    @pytest.fixture()
-    def login_page(self, driver):
-        login_page = LoginPage(driver, self.urls.BASE_URL)
-        login_page.open_page()
-        return login_page
-
-    @pytest.fixture()
-    def main_page(self, driver):
-        main_page = MainPage(driver, self.urls.MAIN_PAGE_URL)
-        return main_page
-
     @allure.title("TC_01_01 - Verify authorization using correct data")
     def test_auth_positive(self, driver, login_page, main_page):
         """Verify that a user successfully logged in with valid data"""
@@ -35,8 +21,8 @@ class TestAuth:
 
         main_page_title_text = main_page.get_element_text(mpl.PRODUCTS_TITLE)
 
-        assert (main_page.get_url_text() == self.urls.MAIN_PAGE_URL and \
-                main_page_title_text == MainData.products_title), "The main page is not open. User is not logged in"
+        assert (main_page.get_url_text() == self.urls.MAIN_PAGE_URL \
+                and main_page_title_text == MainData.products_title), "The main page is not open. User is not logged in"
 
     @allure.title("TC_01_02, TC_01_03, TC_01_04 - Verify authorization using incorrect data")
     @pytest.mark.parametrize("username, password", LoginData.invalid_login_data)
