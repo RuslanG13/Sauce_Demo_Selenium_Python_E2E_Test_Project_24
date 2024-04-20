@@ -1,10 +1,10 @@
 import pytest
 
-from locators.login_locators import LoginPageLocators as lpl
-from locators.main_locators import MainPageLocators as mpl
-from locators.locators_saucedemo import AboutSauceLabPageLocators as ASLPL
+from locators.locators_saucedemo import AboutSauceLabPageLocators as ASLoginPage
 from locators.locators_saucedemo import CartPageLocators as CPL
 
+from pages.login_page import LoginPage
+from pages.main_page import MainPage
 
 from data.page_data.base_data import BaseData
 
@@ -13,20 +13,20 @@ class TestBurgerMenu:
     def test_log_out(self, driver, auth_positive):
         """Test: log out from the product"""
 
-        driver.find_element(*mpl.BURGER_MENU_BUTTON).click()
-        driver.find_element(*mpl.LOGOUT_SIDEBAR_LINK).click()
+        driver.find_element(*MainPage.BURGER_MENU_BUTTON).click()
+        driver.find_element(*MainPage.LOGOUT_SIDEBAR_LINK).click()
 
-        login_button = driver.find_element(*lpl.LOGIN_BUTTON_LOCATOR)
+        login_button = driver.find_element(*LoginPage.LOGIN_BUTTON_LOCATOR)
 
         assert login_button, "The user is not on the login page"
 
     def test_about_button(self, driver, auth_positive):
         """Test: the functionality of the “About” button in the burger menu"""
 
-        driver.find_element(*mpl.BURGER_MENU_BUTTON).click()
-        driver.find_element(*mpl.ABOUT_SIDEBAR_LINK).click()
+        driver.find_element(*MainPage.BURGER_MENU_BUTTON).click()
+        driver.find_element(*MainPage.ABOUT_SIDEBAR_LINK).click()
 
-        saucelabs_logo = driver.find_element(*ASLPL.SAUCELABS_LOGO)
+        saucelabs_logo = driver.find_element(*ASLoginPage.SAUCELABS_LOGO)
         alt_text_logo = saucelabs_logo.get_attribute("alt")
 
         assert saucelabs_logo, "The Sauce Labs logo is not shown"
