@@ -12,7 +12,7 @@ class TestAuth:
     urls = Urls()
 
     @allure.title("TC_01_01 - Verify authorization using correct data")
-    def test_auth_positive(self, driver, login_page, main_page):
+    def test_auth_positive(self, login_page, main_page):
         """Verify that a user successfully logged in with valid data"""
         login_page.login(username=LoginData.valid_login_data[0], password=LoginData.valid_login_data[1])
 
@@ -23,7 +23,7 @@ class TestAuth:
 
     @allure.title("TC_01_02, TC_01_03, TC_01_04 - Verify authorization using incorrect data")
     @pytest.mark.parametrize("username, password", LoginData.invalid_login_data)
-    def test_auth_negative(self, driver, login_page, username, password):
+    def test_auth_negative(self, login_page, username, password):
         """Verify that a user will not be able to log in with invalid data"""
         login_page.login(username=username, password=password)
 
