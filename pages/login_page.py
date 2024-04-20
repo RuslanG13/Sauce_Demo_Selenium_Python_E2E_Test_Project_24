@@ -20,5 +20,5 @@ class LoginPage(BasePage):
 
     @property
     def error_msg_container_background_color(self):
-        return (self.element_is_visible(self.login_page_locators.ERROR_MESSAGE_CONTAINER_LOCATOR)
-                .value_of_css_property("background-color"))
+        return self.get_ccs_property(self.login_page_locators.ERROR_MESSAGE_CONTAINER_LOCATOR,
+                                     "background-color")
