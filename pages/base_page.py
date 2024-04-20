@@ -26,9 +26,6 @@ class BasePage:
     def element_is_invisible(self, locator):
         return self.wait.until(ec.invisibility_of_element(locator))
 
-    def get_element_text(self, locator):
-        return self.element_is_visible(locator).text
-
     def get_ccs_property(self, locator, css_property):
         return self.element_is_visible(locator).value_of_css_property(css_property)
 
@@ -36,5 +33,9 @@ class BasePage:
         return len(self.elements_are_visible(locator))
 
     @staticmethod
-    def element_is_displayed(element):
-        return element.is_displayed()
+    def element_is_displayed(web_element):
+        return web_element.is_displayed()
+
+    @staticmethod
+    def get_element_text(web_element):
+        return web_element.text
