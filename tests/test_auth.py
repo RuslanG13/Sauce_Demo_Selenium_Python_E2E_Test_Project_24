@@ -1,9 +1,6 @@
 import pytest
 import allure
 
-from locators.login_locators import LoginPageLocators as lpl
-from locators.main_locators import MainPageLocators as mpl
-
 from data.page_data.login_data import LoginData
 from data.page_data.main_data import MainData
 
