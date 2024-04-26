@@ -10,10 +10,10 @@ from data.page_data.main_data import MainData
 from data.utils import rand_index
 
 from locators.locators_saucedemo import ItemCardDetailLocators as ICD
-from locators.locators_saucedemo import CartPageLocators as CPL
 
 from pages.login_page import LoginPage
 from pages.main_page import MainPage
+from pages.cart_page import CartPage
 
 urls = Urls()
 
@@ -95,7 +95,7 @@ def check_exist_item_in_cart(driver, auth_positive):
 
     driver.find_element(*MainPage.SHOPPING_CART_BADGE).click()
 
-    amount_items_in_cart = len(driver.find_elements(*CPL.CART_ITEMS))
+    amount_items_in_cart = len(driver.find_elements(*CartPage.CART_ITEMS))
 
     assert amount_items_in_cart == page_elements_data.count_items_in_cart[0], \
         f"The amount is different than {page_elements_data.count_items_in_cart[0]} or cart is empty"
@@ -114,3 +114,10 @@ def main_page(driver):
     """Create and return Main page"""
     main_page = MainPage(driver, urls.MAIN_PAGE_URL)
     return main_page
+
+
+@pytest.fixture()
+def cart_page(driver):
+    """Create and return Cart page"""
+    cart_page = CartPage(driver, urls.CART_PAGE_URL)
+    return cart_page

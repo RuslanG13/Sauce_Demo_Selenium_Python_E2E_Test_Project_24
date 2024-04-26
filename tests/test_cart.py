@@ -1,7 +1,7 @@
-from locators.locators_saucedemo import CartPageLocators as CPL
 from locators.locators_saucedemo import ItemCardDetailLocators as ICD
 
 from pages.main_page import MainPage
+from pages.cart_page import CartPage
 
 from data import page_elements_data
 
@@ -12,15 +12,15 @@ class TestCart:
 
         driver.find_element(*MainPage.SHOPPING_CART_BADGE).click()
 
-        checkout_button = driver.find_element(*CPL.CHECKOUT_BUTTON)
+        checkout_button = driver.find_element(*CartPage.CHECKOUT_BUTTON)
         numbers_of_items_in_shop_cart = int(driver.find_element(*MainPage.SHOPPING_CART_BADGE).text)
 
         assert checkout_button, "A user isn't at cart page"
         assert numbers_of_items_in_shop_cart == page_elements_data.count_items_in_cart[0], \
             f"The number in shopping cart badge is different than {page_elements_data.count_items_in_cart[0]}"
 
-        item_name_in_cart = driver.find_element(*CPL.CART_ITEMS_NAME).text
-        amount_items_in_cart = len(driver.find_elements(*CPL.CART_ITEMS))
+        item_name_in_cart = driver.find_element(*CartPage.CART_ITEMS_NAME).text
+        amount_items_in_cart = len(driver.find_elements(*CartPage.CART_ITEMS))
 
         assert item_name_in_cart in page_elements_data.catalog_items_names, "The item's isn't present in the cart"
         assert amount_items_in_cart == page_elements_data.count_items_in_cart[0], \
@@ -31,15 +31,15 @@ class TestCart:
 
         driver.find_element(*MainPage.SHOPPING_CART_BADGE).click()
 
-        checkout_button = driver.find_element(*CPL.CHECKOUT_BUTTON)
+        checkout_button = driver.find_element(*CartPage.CHECKOUT_BUTTON)
         numbers_of_items_in_shop_cart = int(driver.find_element(*MainPage.SHOPPING_CART_BADGE).text)
 
         assert checkout_button, "A user isn't at cart page"
         assert numbers_of_items_in_shop_cart == page_elements_data.count_items_in_cart[0], \
             f"The number in shopping cart badge is different than {page_elements_data.count_items_in_cart[0]}"
 
-        driver.find_element(*CPL.REMOVE_BUTTON_CART).click()
-        amount_items_in_cart = len(driver.find_elements(*CPL.CART_ITEMS))
+        driver.find_element(*CartPage.REMOVE_BUTTON_CART).click()
+        amount_items_in_cart = len(driver.find_elements(*CartPage.CART_ITEMS))
 
         assert amount_items_in_cart == 0, "The cart is not empty"
 
@@ -47,7 +47,7 @@ class TestCart:
         """Test: adding a product to the cart from the item card"""
 
         driver.find_element(*ICD.SHOPPING_CART_LINK).click()
-        amount_items_in_cart = len(driver.find_elements(*CPL.CART_ITEMS))
+        amount_items_in_cart = len(driver.find_elements(*CartPage.CART_ITEMS))
 
         assert amount_items_in_cart == page_elements_data.count_items_in_cart[0], \
             f"The amount is different than {page_elements_data.count_items_in_cart[0]} or cart is empty"
@@ -64,6 +64,6 @@ class TestCart:
         assert add_to_cart_button, "The 'Add to cart' button is not displayed in the item card"
 
         driver.find_element(*ICD.SHOPPING_CART_LINK).click()
-        amount_items_in_cart = len(driver.find_elements(*CPL.CART_ITEMS))
+        amount_items_in_cart = len(driver.find_elements(*CartPage.CART_ITEMS))
 
         assert amount_items_in_cart == 0, "The cart is not empty"

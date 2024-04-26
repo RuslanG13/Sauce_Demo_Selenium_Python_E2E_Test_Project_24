@@ -1,7 +1,7 @@
-from locators.locators_saucedemo import CartPageLocators as CPL
 from locators.locators_saucedemo import CheckoutPageLocators as CheckPL
 
 from pages.main_page import MainPage
+from pages.cart_page import CartPage
 
 from data import page_elements_data
 from data.utils import fake_first_name_data, fake_last_name_data, fake_post_code_data
@@ -13,7 +13,7 @@ class TestProductCheckout:
 
         driver.find_element(*MainPage.SHOPPING_CART_BADGE).click()
 
-        checkout_button = driver.find_element(*CPL.CHECKOUT_BUTTON)
+        checkout_button = driver.find_element(*CartPage.CHECKOUT_BUTTON)
         numbers_of_items_in_shop_cart = int(driver.find_element(*MainPage.SHOPPING_CART_BADGE).text)
 
         assert checkout_button, "A user isn't at cart page"
