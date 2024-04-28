@@ -41,6 +41,6 @@ class TestBurgerMenu:
         driver.find_element(*CartPage.BURGER_MENU_BUTTON).click()
         driver.find_element(*CartPage.RESET_APP_STATE_LINK).click()
 
-        amount_items_in_cart_after_reset = len(driver.find_elements(*CartPage.CART_ITEMS))
+        amount_items_in_cart_after_reset = len(driver.find_elements(*CartPage.CART_ITEM))
 
         assert amount_items_in_cart_after_reset == 0, "The cart is not empty"

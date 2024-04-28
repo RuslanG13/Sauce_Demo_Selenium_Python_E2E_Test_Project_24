@@ -5,7 +5,7 @@ sauce_labs_logo_alt_text = "Saucelabs"
 login_error_text = "Epic sadface: Username and password do not match any user in this service"
 background_color_error_container = "rgba(226, 35, 26, 1)"
 
-# inventory page
+# main page
 catalog_items = {
     "Sauce Labs Backpack": "$29.99",
     "Sauce Labs Bike Light": "$9.99",

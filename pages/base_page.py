@@ -26,6 +26,9 @@ class BasePage:
     def element_is_invisible(self, locator):
         return self.wait.until(ec.invisibility_of_element(locator))
 
+    def click_element(self, locator):
+        return self.wait.until(ec.element_to_be_clickable(locator)).click()
+
     def get_ccs_property(self, locator, css_property):
         return self.element_is_visible(locator).value_of_css_property(css_property)
 

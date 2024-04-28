@@ -1,30 +1,31 @@
+import allure
+
 from locators.locators_saucedemo import ItemCardDetailLocators as ICD
 
 from pages.main_page import MainPage
 from pages.cart_page import CartPage
 
 from data import page_elements_data
+from data.page_data.login_data import LoginData
+from data.page_data.main_data import MainData
 
 
+@allure.feature("Shopping Cart")
 class TestCart:
-    def test_add_item_through_catalog(self, driver, auth_positive, add_item_to_cart_through_catalog):
-        """Test: adding an item to the cart from through catalog"""
+    @allure.title("TC_02_01 - Verify adding a product to the cart through the catalog")
+    def test_add_item_through_catalog(self, login_page, main_page, cart_page):
+        """Verify success in adding an item to the cart through catalog"""
+        login_page.login(username=LoginData.valid_login_data[0], password=LoginData.valid_login_data[1])
+        main_page.add_random_item_from_catalog_to_cart()
+        main_page.click_shopping_cart_link()
 
-        driver.find_element(*MainPage.SHOPPING_CART_BADGE).click()
+        item_title_in_cart = cart_page.get_item_title_in_cart_text
+        amount_items_in_cart = cart_page.get_amount_items_in_cart
 
-        checkout_button = driver.find_element(*CartPage.CHECKOUT_BUTTON)
-        numbers_of_items_in_shop_cart = int(driver.find_element(*MainPage.SHOPPING_CART_BADGE).text)
-
-        assert checkout_button, "A user isn't at cart page"
-        assert numbers_of_items_in_shop_cart == page_elements_data.count_items_in_cart[0], \
-            f"The number in shopping cart badge is different than {page_elements_data.count_items_in_cart[0]}"
-
-        item_name_in_cart = driver.find_element(*CartPage.CART_ITEMS_NAME).text
-        amount_items_in_cart = len(driver.find_elements(*CartPage.CART_ITEMS))
-
-        assert item_name_in_cart in page_elements_data.catalog_items_names, "The item's isn't present in the cart"
-        assert amount_items_in_cart == page_elements_data.count_items_in_cart[0], \
-            f"The amount is different than {page_elements_data.count_items_in_cart[0]} or cart is empty"
+        assert item_title_in_cart in MainData.catalog_items_names, \
+            f"The selected {item_title_in_cart} item is not present in the cart"
+        assert amount_items_in_cart == MainData.count_items_in_cart[0], \
+            f"The {amount_items_in_cart} amount is not equal {MainData.count_items_in_cart[0]}"
 
     def test_delete_item(self, driver, auth_positive, add_item_to_cart_through_catalog):
         """Test: deleting an item from the cart"""
@@ -39,7 +40,7 @@ class TestCart:
             f"The number in shopping cart badge is different than {page_elements_data.count_items_in_cart[0]}"
 
         driver.find_element(*CartPage.REMOVE_BUTTON_CART).click()
-        amount_items_in_cart = len(driver.find_elements(*CartPage.CART_ITEMS))
+        amount_items_in_cart = len(driver.find_elements(*CartPage.CART_ITEM))
 
         assert amount_items_in_cart == 0, "The cart is not empty"
 
@@ -47,7 +48,7 @@ class TestCart:
         """Test: adding a product to the cart from the item card"""
 
         driver.find_element(*ICD.SHOPPING_CART_LINK).click()
-        amount_items_in_cart = len(driver.find_elements(*CartPage.CART_ITEMS))
+        amount_items_in_cart = len(driver.find_elements(*CartPage.CART_ITEM))
 
         assert amount_items_in_cart == page_elements_data.count_items_in_cart[0], \
             f"The amount is different than {page_elements_data.count_items_in_cart[0]} or cart is empty"
@@ -64,6 +65,6 @@ class TestCart:
         assert add_to_cart_button, "The 'Add to cart' button is not displayed in the item card"
 
         driver.find_element(*ICD.SHOPPING_CART_LINK).click()
-        amount_items_in_cart = len(driver.find_elements(*CartPage.CART_ITEMS))
+        amount_items_in_cart = len(driver.find_elements(*CartPage.CART_ITEM))
 
         assert amount_items_in_cart == 0, "The cart is not empty"

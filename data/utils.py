@@ -30,5 +30,10 @@ def increase_test_case_num(start, end):
         start += 1
     return index
 
-def get_len_list(list):
-    return len(list) + 1
+
+def get_length_list(entry_list):
+    return len(entry_list)
+
+
+def get_int_value_from_str(num_text):
+    return int(num_text)

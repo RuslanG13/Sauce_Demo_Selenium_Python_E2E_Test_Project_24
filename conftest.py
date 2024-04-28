@@ -21,10 +21,9 @@ urls = Urls()
 @pytest.fixture()
 def driver():
     """Chrome webdriver initialization"""
-
     chrome_options = Options()
     chrome_options.add_argument("--window-size=1920,1080")
-    chrome_options.add_argument("--headless")
+    # chrome_options.add_argument("--headless")
     chrome_options.add_argument('--no-sandbox')
     chrome_options.add_argument('--disable-dev-shm-usage')
 
@@ -95,7 +94,7 @@ def check_exist_item_in_cart(driver, auth_positive):
 
     driver.find_element(*MainPage.SHOPPING_CART_BADGE).click()
 
-    amount_items_in_cart = len(driver.find_elements(*CartPage.CART_ITEMS))
+    amount_items_in_cart = len(driver.find_elements(*CartPage.CART_ITEM))
 
     assert amount_items_in_cart == page_elements_data.count_items_in_cart[0], \
         f"The amount is different than {page_elements_data.count_items_in_cart[0]} or cart is empty"

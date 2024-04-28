@@ -18,9 +18,9 @@ class LoginPage(BasePage):
         self.element_is_clickable(self.LOGIN_BUTTON_LOCATOR).click()
 
     @property
-    def error_login_msg(self):
-        return self.element_is_visible(self.ERROR_LOGIN_MESSAGE_LOCATOR)
+    def get_error_login_msg_text(self):
+        return self.get_element_text(self.element_is_visible(self.ERROR_LOGIN_MESSAGE_LOCATOR))
 
     @property
-    def error_msg_container_background_color(self):
+    def get_error_msg_container_background_color(self):
         return self.get_ccs_property(self.ERROR_MESSAGE_CONTAINER_LOCATOR, "background-color")

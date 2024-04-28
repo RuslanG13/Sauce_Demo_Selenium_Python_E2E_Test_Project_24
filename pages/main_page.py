@@ -1,4 +1,9 @@
+import time
+
 from pages.base_page import BasePage
+
+from data.utils import rand_index, get_int_value_from_str, get_length_list
+from data.page_data.main_data import MainData
 
 
 class MainPage(BasePage):
@@ -30,5 +35,30 @@ class MainPage(BasePage):
         super().__init__(driver, url)
 
     @property
-    def products_title(self):
-        return self.element_is_visible(self.PRODUCTS_TITLE)
+    def get_products_title_text(self):
+        return self.get_element_text(self.element_is_visible(self.PRODUCTS_TITLE))
+
+    @property
+    def get_list_catalog_items(self):
+        return self.elements_are_visible(self.INVENTORY_ITEMS)
+
+    @property
+    def get_list_to_cart_btn(self):
+        return self.elements_are_visible(self.ADD_TO_CART_BUTTON)
+
+    def get_items_badge_text(self):
+        return self.get_element_text(self.element_is_visible(self.SHOPPING_CART_BADGE))
+
+    def click_shopping_cart_link(self):
+        return self.click_element(self.SHOPPING_CART_BADGE)
+
+    def add_random_item_from_catalog_to_cart(self):
+        """This method selects one of the products on the main page"""
+        selected_item_idx = rand_index(get_length_list(self.get_list_catalog_items))
+
+        self.get_list_to_cart_btn[selected_item_idx].click()
+
+        amount_of_items_in_shop_cart_badge = get_int_value_from_str(self.get_items_badge_text())
+
+        assert amount_of_items_in_shop_cart_badge == MainData.count_items_in_cart[0], \
+            f"The number in {amount_of_items_in_shop_cart_badge} is not equal {MainData.count_items_in_cart[0]}"
