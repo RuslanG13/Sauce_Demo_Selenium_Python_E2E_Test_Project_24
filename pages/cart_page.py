@@ -1,3 +1,5 @@
+from selenium.common import NoSuchElementException, TimeoutException
+
 from pages.base_page import BasePage
 
 from data.utils import get_length_list
@@ -17,13 +19,22 @@ class CartPage(BasePage):
     RESET_APP_STATE_LINK = ("xpath", "//a[@id='reset_sidebar_link']")
 
     @property
-    def get_item_name_in_cart(self):
+    def get_items_in_cart(self):
         return self.elements_are_visible(self.CART_ITEM)
+
+    def is_cart_empty(self):
+        return self.element_is_invisible(self.CART_ITEM)
 
     @property
     def get_item_title_in_cart_text(self):
         return self.get_element_text(self.element_is_visible(self.CART_ITEM_NAME))
 
+    def get_remove_button(self):
+        return self.element_is_visible(self.REMOVE_BUTTON_CART)
+
+    def click_remove_button(self):
+        return self.element_is_clickable(self.get_remove_button()).click()
+
     @property
     def get_amount_items_in_cart(self):
-        return get_length_list(self.get_item_name_in_cart)
+        return get_length_list(self.get_items_in_cart)
