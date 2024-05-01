@@ -9,17 +9,17 @@ from data.urls import Urls
 
 @allure.feature("Authorization")
 class TestAuth:
-    @allure.title("TC_01_01 - Verify authorization using correct data")
+    @allure.title("TC_01_01 | Verify authorization using correct data")
     def test_auth_positive(self, login_page, main_page):
         """Verify that a user successfully log in with valid data"""
-        login_page.login(username=LoginData.valid_login_data[0], password=LoginData.valid_login_data[1])
+        login_page.login(username=LoginData.valid_username, password=LoginData.valid_password)
 
         main_page_title_text = main_page.get_products_title_text
 
         assert main_page.get_url_text() == Urls.MAIN_PAGE_URL and \
                main_page_title_text == MainData.products_title, "The main page is not open. User is not logged in"
 
-    @allure.title("TC_01_02, TC_01_03, TC_01_04 - Verify authorization using incorrect data")
+    @allure.title("TC_01_02, TC_01_03, TC_01_04 | Verify authorization using incorrect data")
     @pytest.mark.parametrize("username, password", LoginData.invalid_login_data)
     def test_auth_negative(self, login_page, username, password):
         """Verify that a user can not log in with invalid data"""

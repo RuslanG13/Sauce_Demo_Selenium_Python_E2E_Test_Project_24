@@ -1,7 +1,6 @@
 from pages.base_page import BasePage
 
 from data.utils import rand_index, get_int_value_from_str, get_length_list
-from data.page_data.main_data import MainData
 
 
 class MainPage(BasePage):
@@ -37,7 +36,7 @@ class MainPage(BasePage):
         return self.get_element_text(self.element_is_visible(self.PRODUCTS_TITLE))
 
     @property
-    def get_list_to_cart_btn(self):
+    def get_list_add_to_cart_btn(self):
         return self.elements_are_visible(self.ADD_TO_CART_BUTTON)
 
     @property
@@ -46,27 +45,29 @@ class MainPage(BasePage):
 
     @property
     def select_random_item_index(self):
+        """This property returns a random item from a product catalog"""
         return rand_index(get_length_list(self.get_items_card_link_images))
 
+    @property
     def get_items_badge_text(self):
         return self.get_element_text(self.element_is_visible(self.SHOPPING_CART_BADGE))
 
     def click_shopping_cart_link(self):
         return self.click_element(self.SHOPPING_CART_BADGE)
 
-    def check_amount_items_in_cart(self):
-        amount_of_items_in_shop_cart_badge = get_int_value_from_str(self.get_items_badge_text())
+    def check_amount_items_in_cart_badge(self, num_of_items_in_cart_badge):
+        """This method checks amount of items in shopping cart badge"""
+        amount_of_items_in_shop_cart_badge = get_int_value_from_str(self.get_items_badge_text)
 
-        assert amount_of_items_in_shop_cart_badge == MainData.count_items_in_cart[0], \
-            f"The number in {amount_of_items_in_shop_cart_badge} is not equal {MainData.count_items_in_cart[0]}"
+        assert amount_of_items_in_shop_cart_badge == num_of_items_in_cart_badge, \
+            f"The number in {amount_of_items_in_shop_cart_badge} is not equal {num_of_items_in_cart_badge}"
 
-    def add_random_item_from_catalog_to_cart(self):
-        """This method add to cart one random product from the main page"""
+    def add_item_to_cart_from_catalog(self):
+        """This method adds to cart one random product from the main page"""
         selected_item_idx = self.select_random_item_index
-        self.get_list_to_cart_btn[selected_item_idx].click()
-        self.check_amount_items_in_cart()
+        self.get_list_add_to_cart_btn[selected_item_idx].click()
 
-    def add_random_item_from_item_card(self):
+    def open_specific_item_card(self):
+        """This method adds to cart one product from the cart card"""
         selected_item_idx = self.select_random_item_index
         self.get_items_card_link_images[selected_item_idx].click()
-        self.check_amount_items_in_cart()

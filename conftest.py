@@ -14,6 +14,7 @@ from locators.locators_saucedemo import ItemCardDetailLocators as ICD
 from pages.login_page import LoginPage
 from pages.main_page import MainPage
 from pages.cart_page import CartPage
+from pages.item_card_page import ItemCardPage
 
 urls = Urls()
 
@@ -23,7 +24,7 @@ def driver():
     """Chrome webdriver initialization"""
     chrome_options = Options()
     chrome_options.add_argument("--window-size=1920,1080")
-    chrome_options.add_argument("--headless")
+    # chrome_options.add_argument("--headless")
     chrome_options.add_argument('--no-sandbox')
     chrome_options.add_argument('--disable-dev-shm-usage')
 
@@ -39,8 +40,8 @@ def auth_positive(driver):
 
     driver.get(Urls.BASE_URL)
 
-    driver.find_element(*LoginPage.USERNAME_FIELD_LOCATOR).send_keys(LoginData.valid_login_data[0])
-    driver.find_element(*LoginPage.PASSWORD_FIELD_LOCATOR).send_keys(LoginData.valid_login_data[1])
+    driver.find_element(*LoginPage.USERNAME_FIELD_LOCATOR).send_keys(LoginData.valid_username)
+    driver.find_element(*LoginPage.PASSWORD_FIELD_LOCATOR).send_keys(LoginData.valid_password)
 
     driver.find_element(*LoginPage.LOGIN_BUTTON_LOCATOR).click()
 
@@ -60,8 +61,8 @@ def add_item_to_cart_through_catalog(driver, auth_positive):
 
     assert selected_item_name in MainData.catalog_items_names, \
         "The selected item not present in catalog"
-    assert numbers_of_items_in_shop_cart == MainData.count_items_in_cart[0], \
-        f"The number in shopping cart badge is different than {MainData.count_items_in_cart[0]}"
+    assert numbers_of_items_in_shop_cart == MainData.items_in_shop_cart_badge[0], \
+        f"The number in shopping cart badge is different than {MainData.items_in_shop_cart_badge[0]}"
 
 
 @pytest.fixture()
@@ -84,8 +85,8 @@ def add_item_to_cart_through_item_card(driver, auth_positive):
 
     numbers_of_items_in_shop_cart_in_badge = int(driver.find_element(*MainPage.SHOPPING_CART_BADGE).text)
 
-    assert numbers_of_items_in_shop_cart_in_badge == MainData.count_items_in_cart[0], \
-        f"The number in shopping cart badge is different than {MainData.count_items_in_cart[0]}"
+    assert numbers_of_items_in_shop_cart_in_badge == MainData.items_in_shop_cart_badge[0], \
+        f"The number in shopping cart badge is different than {MainData.items_in_shop_cart_badge[0]}"
 
 
 @pytest.fixture()
@@ -120,3 +121,10 @@ def cart_page(driver):
     """Create and return Cart page"""
     cart_page = CartPage(driver, urls.CART_PAGE_URL)
     return cart_page
+
+
+@pytest.fixture()
+def item_card_page(driver):
+    """Create and return Item Card page"""
+    item_card_page = ItemCardPage(driver)
+    return item_card_page

@@ -1,5 +1,3 @@
-from selenium.common import NoSuchElementException, TimeoutException
-
 from pages.base_page import BasePage
 
 from data.utils import get_length_list
