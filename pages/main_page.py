@@ -1,5 +1,3 @@
-import time
-
 from pages.base_page import BasePage
 
 from data.utils import rand_index, get_int_value_from_str, get_length_list
@@ -39,12 +37,16 @@ class MainPage(BasePage):
         return self.get_element_text(self.element_is_visible(self.PRODUCTS_TITLE))
 
     @property
-    def get_list_catalog_items(self):
-        return self.elements_are_visible(self.INVENTORY_ITEMS)
-
-    @property
     def get_list_to_cart_btn(self):
         return self.elements_are_visible(self.ADD_TO_CART_BUTTON)
+
+    @property
+    def get_items_card_link_images(self):
+        return self.elements_are_visible(self.INVENTORY_ITEMS_CARD_LINK_IMAGE)
+
+    @property
+    def select_random_item_index(self):
+        return rand_index(get_length_list(self.get_items_card_link_images))
 
     def get_items_badge_text(self):
         return self.get_element_text(self.element_is_visible(self.SHOPPING_CART_BADGE))
@@ -52,13 +54,19 @@ class MainPage(BasePage):
     def click_shopping_cart_link(self):
         return self.click_element(self.SHOPPING_CART_BADGE)
 
-    def add_random_item_from_catalog_to_cart(self):
-        """This method selects one of the products on the main page"""
-        selected_item_idx = rand_index(get_length_list(self.get_list_catalog_items))
-
-        self.get_list_to_cart_btn[selected_item_idx].click()
-
+    def check_amount_items_in_cart(self):
         amount_of_items_in_shop_cart_badge = get_int_value_from_str(self.get_items_badge_text())
 
         assert amount_of_items_in_shop_cart_badge == MainData.count_items_in_cart[0], \
             f"The number in {amount_of_items_in_shop_cart_badge} is not equal {MainData.count_items_in_cart[0]}"
+
+    def add_random_item_from_catalog_to_cart(self):
+        """This method add to cart one random product from the main page"""
+        selected_item_idx = self.select_random_item_index
+        self.get_list_to_cart_btn[selected_item_idx].click()
+        self.check_amount_items_in_cart()
+
+    def add_random_item_from_item_card(self):
+        selected_item_idx = self.select_random_item_index
+        self.get_items_card_link_images[selected_item_idx].click()
+        self.check_amount_items_in_cart()
