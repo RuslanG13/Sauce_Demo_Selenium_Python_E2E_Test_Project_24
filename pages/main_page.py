@@ -4,18 +4,18 @@ from data.utils import rand_index, get_int_value_from_str, get_length_list
 
 
 class MainPage(BasePage):
-    PRODUCTS_TITLE = ("xpath", "//span[@data-test='title']")
+    PRODUCTS_TITLE_LOCATOR = ("xpath", "//span[@data-test='title']")
 
-    ADD_TO_CART_BUTTON = ("xpath", "//button[@class='btn btn_primary btn_small btn_inventory ']")
+    ADD_TO_CART_BUTTON_LOCATOR = ("xpath", "//button[@class='btn btn_primary btn_small btn_inventory ']")
     REMOVE_BUTTON = ("xpath", "//button[@class='btn btn_secondary btn_small btn_inventory ']")
-    SHOPPING_CART_LINK = ("xpath", "//a[@data-test='shopping-cart-link']")
+    SHOPPING_CART_LINK_LOCATOR = ("xpath", "//a[@data-test='shopping-cart-link']")
 
     INVENTORY_ITEMS = ("xpath", "//div[@class='inventory_item']")
     INVENTORY_ITEM_NAME = ("xpath", "//div[@class='inventory_item_name ']")
-    INVENTORY_ITEMS_CARD_LINK_IMAGE = ("xpath", "//a[contains(@id, 'img_link')]")
+    INVENTORY_ITEMS_CARD_LINK_IMAGE_LOCATOR = ("xpath", "//a[contains(@id, 'img_link')]")
 
     INVENTORY_ITEMS_PRICE = ("xpath", "//div[@class='inventory_item_price']")
-    SHOPPING_CART_BADGE = ("xpath", "//span[@class='shopping_cart_badge']")
+    SHOPPING_CART_BADGE_LOCATOR = ("xpath", "//span[@class='shopping_cart_badge']")
     CART_ITEM_LABEL = ("xpath", "cart_item_label")
 
     DROPDOWN_PRODUCT_SORT_CONTAINER_BTN = ("xpath", "//select[@data-test='product-sort-container']")
@@ -28,20 +28,17 @@ class MainPage(BasePage):
     LOGOUT_SIDEBAR_LINK = ("xpath", "//a[@id='logout_sidebar_link']")
     ABOUT_SIDEBAR_LINK = ("xpath", "//a[@id='about_sidebar_link']")
 
-    def __init__(self, driver, url):
-        super().__init__(driver, url)
-
     @property
     def get_products_title_text(self):
-        return self.get_element_text(self.element_is_visible(self.PRODUCTS_TITLE))
+        return self.get_element_text(self.element_is_visible(self.PRODUCTS_TITLE_LOCATOR))
 
     @property
     def get_list_add_to_cart_btn(self):
-        return self.elements_are_visible(self.ADD_TO_CART_BUTTON)
+        return self.elements_are_visible(self.ADD_TO_CART_BUTTON_LOCATOR)
 
     @property
     def get_items_card_link_images(self):
-        return self.elements_are_visible(self.INVENTORY_ITEMS_CARD_LINK_IMAGE)
+        return self.elements_are_visible(self.INVENTORY_ITEMS_CARD_LINK_IMAGE_LOCATOR)
 
     @property
     def select_random_item_index(self):
@@ -50,12 +47,12 @@ class MainPage(BasePage):
 
     @property
     def get_items_badge_text(self):
-        return self.get_element_text(self.element_is_visible(self.SHOPPING_CART_BADGE))
+        return self.get_element_text(self.element_is_visible(self.SHOPPING_CART_BADGE_LOCATOR))
 
     def click_shopping_cart_link(self):
-        return self.click_element(self.SHOPPING_CART_BADGE)
+        return self.click_element(self.SHOPPING_CART_LINK_LOCATOR)
 
-    def check_amount_items_in_cart_badge(self, num_of_items_in_cart_badge):
+    def check_amount_items_in_cart_badge(self, num_of_items_in_cart_badge: int):
         """This method checks amount of items in shopping cart badge"""
         amount_of_items_in_shop_cart_badge = get_int_value_from_str(self.get_items_badge_text)
 

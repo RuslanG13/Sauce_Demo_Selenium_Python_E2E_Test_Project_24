@@ -10,7 +10,7 @@ class TestProductCard:
         """Test: successful redirect to the product card after clicking on the product image"""
 
         list_catalog_items = driver.find_elements(*MainPage.INVENTORY_ITEMS)
-        list_catalog_items_image = driver.find_elements(*MainPage.INVENTORY_ITEMS_CARD_LINK_IMAGE)
+        list_catalog_items_image = driver.find_elements(*MainPage.INVENTORY_ITEMS_CARD_LINK_IMAGE_LOCATOR)
 
         selected_item_idx = rand_index(len(list_catalog_items))
         selected_item_name_on_catalog = list_catalog_items[selected_item_idx].text.split("\n")[0]

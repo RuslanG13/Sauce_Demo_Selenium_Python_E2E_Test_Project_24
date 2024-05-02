@@ -11,10 +11,10 @@ class TestProductCheckout:
     def test_product_checkout_with_valid_data(self, driver, auth_positive, add_item_to_cart_through_catalog):
         """Test: checkout product using correct data"""
 
-        driver.find_element(*MainPage.SHOPPING_CART_BADGE).click()
+        driver.find_element(*MainPage.SHOPPING_CART_BADGE_LOCATOR).click()
 
-        checkout_button = driver.find_element(*CartPage.CHECKOUT_BUTTON)
-        numbers_of_items_in_shop_cart = int(driver.find_element(*MainPage.SHOPPING_CART_BADGE).text)
+        checkout_button = driver.find_element(*CartPage.CHECKOUT_BUTTON_LOCATOR)
+        numbers_of_items_in_shop_cart = int(driver.find_element(*MainPage.SHOPPING_CART_BADGE_LOCATOR).text)
 
         assert checkout_button, "A user isn't at cart page"
         assert numbers_of_items_in_shop_cart == page_elements_data.count_items_in_cart[0], \

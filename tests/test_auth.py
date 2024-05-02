@@ -9,6 +9,7 @@ from data.urls import Urls
 
 @allure.feature("Authorization")
 class TestAuth:
+
     @allure.title("TC_01_01 | Verify authorization using correct data")
     def test_auth_positive(self, login_page, main_page):
         """Verify that a user successfully log in with valid data"""

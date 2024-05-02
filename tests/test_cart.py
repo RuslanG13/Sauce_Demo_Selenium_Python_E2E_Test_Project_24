@@ -1,9 +1,5 @@
 import allure
 
-from locators.locators_saucedemo import ItemCardDetailLocators as ICD
-
-from pages.cart_page import CartPage
-
 from data.page_data.login_data import LoginData
 from data.page_data.cart_data import CartData
 from data.page_data.main_data import MainData
@@ -12,6 +8,7 @@ from data.page_data.item_card_data import ItemCardData
 
 @allure.feature("Shopping Cart")
 class TestCart:
+
     @allure.title("TC_02_01 | Verify adding a product to the cart through the catalog")
     def test_add_item_through_catalog(self, login_page, main_page, cart_page):
         """Verify success in adding a product to the cart through the catalog"""
@@ -41,7 +38,7 @@ class TestCart:
 
         assert is_no_items_in_cart is True, "The cart is not empty"
 
-    @allure.title("TC_02_03 | Verify adding a product to the cart from the product card ")
+    @allure.title("TC_02_03 | Verify adding a product to the cart from the product card")
     def test_add_item_through_item_card(self, login_page, main_page, item_card_page, cart_page):
         """Verify success in adding a product to the cart through the product card"""
         login_page.login(username=LoginData.valid_username, password=LoginData.valid_password)
@@ -58,18 +55,17 @@ class TestCart:
         assert amount_items_in_cart == CartData.items_in_shop_cart_badge[0], \
             f"The {amount_items_in_cart} amount is not equal {CartData.items_in_shop_cart_badge[0]}"
 
-    def test_delete_item_through_item_card(self, driver, auth_positive, add_item_to_cart_through_item_card):
-        """Test: removing an item from the cart using the item card"""
+    @allure.title("TC_02_04 | Verify removing an item from the cart using the item card")
+    def test_delete_item_through_item_card(self, login_page, main_page, item_card_page, cart_page):
+        """Verify success in deleting a product from the cart through item card"""
+        login_page.login(username=LoginData.valid_username, password=LoginData.valid_password)
+        main_page.open_specific_item_card()
+        item_card_page.click_add_to_cart_btn()
+        item_card_page.check_amount_items_in_cart_badge(ItemCardData.items_in_shop_cart_badge[0])
+        item_card_page.click_remove_button()
+        item_card_page.check_displays_of_add_to_cart_btn()
+        item_card_page.click_shopping_cart_link()
 
-        remove_button = driver.find_element(*ICD.REMOVE_BUTTON)
-        assert remove_button, "The 'remove' button is not displayed in the item card"
+        is_no_items_in_cart = cart_page.is_cart_empty()
 
-        remove_button.click()
-
-        add_to_cart_button = driver.find_element(*ICD.ADD_TO_CART_BUTTON)
-        assert add_to_cart_button, "The 'Add to cart' button is not displayed in the item card"
-
-        driver.find_element(*ICD.SHOPPING_CART_LINK).click()
-        amount_items_in_cart = len(driver.find_elements(*CartPage.CART_ITEM))
-
-        assert amount_items_in_cart == 0, "The cart is not empty"
+        assert is_no_items_in_cart is True, "The cart is not empty"
