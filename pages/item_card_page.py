@@ -7,7 +7,7 @@ class ItemCardPage(BasePage):
     ADD_TO_CART_BUTTON_LOCATOR = ("xpath", "//button[@class='btn btn_primary btn_small btn_inventory']")
     SHOPPING_CART_BADGE_LOCATOR = ("xpath", "//span[@class='shopping_cart_badge']")
     SHOPPING_CART_LINK_LOCATOR = ("xpath", "//a[@class='shopping_cart_link']")
-    REMOVE_BUTTON_LOCATOR_LOCATOR = ("xpath", "//button[@id='remove']")
+    REMOVE_BUTTON_LOCATOR = ("xpath", "//button[@id='remove']")
 
     def __init__(self, driver):
         super().__init__(driver=driver, url=None)
@@ -20,18 +20,14 @@ class ItemCardPage(BasePage):
     def get_items_badge_text(self):
         return self.get_element_text(self.element_is_visible(self.SHOPPING_CART_BADGE_LOCATOR))
 
-    @property
-    def get_remove_button(self):
-        return self.element_is_visible(self.REMOVE_BUTTON_LOCATOR_LOCATOR)
-
     def click_remove_button(self):
-        self.element_is_clickable(self.get_remove_button).click()
+        self.click_element(self.REMOVE_BUTTON_LOCATOR)
 
     def click_shopping_cart_link(self):
-        return self.click_element(self.SHOPPING_CART_LINK_LOCATOR)
+        self.click_element(self.SHOPPING_CART_LINK_LOCATOR)
 
     def click_add_to_cart_btn(self):
-        return self.click_element(self.ADD_TO_CART_BUTTON_LOCATOR)
+        self.click_element(self.ADD_TO_CART_BUTTON_LOCATOR)
 
     def check_displays_of_add_to_cart_btn(self):
         assert self.get_add_to_cart_btn.is_displayed()

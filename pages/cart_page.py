@@ -27,11 +27,8 @@ class CartPage(BasePage):
     def get_item_title_in_cart_text(self):
         return self.get_element_text(self.element_is_visible(self.CART_ITEM_NAME_LOCATOR))
 
-    def get_remove_button(self):
-        return self.element_is_visible(self.REMOVE_BUTTON_CART_LOCATOR)
-
     def click_remove_button(self):
-        return self.element_is_clickable(self.get_remove_button()).click()
+        return self.click_element(self.REMOVE_BUTTON_CART_LOCATOR)
 
     @property
     def get_amount_items_in_cart(self):
