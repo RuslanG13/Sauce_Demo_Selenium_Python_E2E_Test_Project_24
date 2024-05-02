@@ -1,10 +1,10 @@
 import pytest
 import allure
 
-from data.page_data.login_data import LoginData
-from data.page_data.main_data import MainData
+from data.login_data import LoginData
+from data.main_data import MainData
 
-from data.urls import Urls
+from data.urls import MAIN_PAGE_URL
 
 
 @allure.feature("Authorization")
@@ -17,7 +17,7 @@ class TestAuth:
 
         main_page_title_text = main_page.get_products_title_text
 
-        assert main_page.get_url_text() == Urls.MAIN_PAGE_URL and \
+        assert main_page.get_url_text() == MAIN_PAGE_URL and \
                main_page_title_text == MainData.products_title, "The main page is not open. User is not logged in"
 
     @allure.title("TC_01_02, TC_01_03, TC_01_04 | Verify authorization using incorrect data")

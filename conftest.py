@@ -4,17 +4,15 @@ from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 
 from data import page_elements_data
-from data.urls import Urls
-from data.page_data.login_data import LoginData
-from data.page_data.main_data import MainData
+from data.login_data import LoginData
+from data.main_data import MainData
+from data.urls import BASE_URL, MAIN_PAGE_URL, CART_PAGE_URL
 from data.utils import rand_index
 
 from pages.login_page import LoginPage
 from pages.main_page import MainPage
 from pages.cart_page import CartPage
 from pages.item_card_page import ItemCardPage
-
-urls = Urls()
 
 
 @pytest.fixture()
@@ -36,7 +34,7 @@ def driver():
 def auth_positive(driver):
     """Fixture: Positive authentication on the https://www.saucedemo.com"""
 
-    driver.get(Urls.BASE_URL)
+    driver.get(BASE_URL)
 
     driver.find_element(*LoginPage.USERNAME_FIELD_LOCATOR).send_keys(LoginData.valid_username)
     driver.find_element(*LoginPage.PASSWORD_FIELD_LOCATOR).send_keys(LoginData.valid_password)
@@ -78,7 +76,7 @@ def check_exist_item_in_cart(driver, auth_positive):
 @pytest.fixture()
 def login_page(driver):
     """Create and return Login page"""
-    login_page = LoginPage(driver, urls.BASE_URL)
+    login_page = LoginPage(driver, BASE_URL)
     login_page.open_page()
     return login_page
 
@@ -86,14 +84,14 @@ def login_page(driver):
 @pytest.fixture()
 def main_page(driver):
     """Create and return Main page"""
-    main_page = MainPage(driver, urls.MAIN_PAGE_URL)
+    main_page = MainPage(driver, MAIN_PAGE_URL)
     return main_page
 
 
 @pytest.fixture()
 def cart_page(driver):
     """Create and return Cart page"""
-    cart_page = CartPage(driver, urls.CART_PAGE_URL)
+    cart_page = CartPage(driver, CART_PAGE_URL)
     return cart_page
 
 

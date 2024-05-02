@@ -6,7 +6,7 @@ from pages.login_page import LoginPage
 from pages.main_page import MainPage
 from pages.cart_page import CartPage
 
-from data.page_data.base_data import BaseData
+from data.base_data import BaseData
 
 
 class TestBurgerMenu:
@@ -38,9 +38,9 @@ class TestBurgerMenu:
                                     check_exist_item_in_cart):
         """Test: the functionality of the “Reset App State” button in the burger menu"""
 
-        driver.find_element(*CartPage.BURGER_MENU_BUTTON).click()
-        driver.find_element(*CartPage.RESET_APP_STATE_LINK).click()
+        driver.find_element(*CartPage.BURGER_MENU_BUTTON_LOCATOR).click()
+        driver.find_element(*CartPage.RESET_APP_STATE_LINK_LOCATOR).click()
 
-        amount_items_in_cart_after_reset = len(driver.find_elements(*CartPage.CART_ITEM))
+        amount_items_in_cart_after_reset = len(driver.find_elements(*CartPage.CART_ITEM_LOCATOR))
 
         assert amount_items_in_cart_after_reset == 0, "The cart is not empty"

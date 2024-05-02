@@ -1,9 +1,9 @@
 import allure
 
-from data.page_data.login_data import LoginData
-from data.page_data.cart_data import CartData
-from data.page_data.main_data import MainData
-from data.page_data.item_card_data import ItemCardData
+from data.login_data import LoginData
+from data.cart_data import CartData
+from data.main_data import MainData
+from data.item_card_data import ItemCardData
 
 
 @allure.feature("Shopping Cart")

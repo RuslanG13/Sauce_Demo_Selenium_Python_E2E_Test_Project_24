@@ -1,4 +1,4 @@
-from data.page_data.base_data import BaseData
+from data.base_data import BaseData
 
 
 class CartData(BaseData):
