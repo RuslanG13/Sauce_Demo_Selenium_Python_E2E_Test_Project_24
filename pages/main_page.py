@@ -1,6 +1,6 @@
 from pages.base_page import BasePage
 
-from data.utils import rand_index, get_int_value_from_str, get_length_list
+from data.utils import rand_index, get_length_list
 
 
 class MainPage(BasePage):
@@ -15,7 +15,7 @@ class MainPage(BasePage):
     INVENTORY_ITEMS_CARD_LINK_IMAGE_LOCATOR = ("xpath", "//a[contains(@id, 'img_link')]")
 
     INVENTORY_ITEMS_PRICE = ("xpath", "//div[@class='inventory_item_price']")
-    SHOPPING_CART_BADGE_LOCATOR = ("xpath", "//span[@class='shopping_cart_badge']")
+
     CART_ITEM_LABEL = ("xpath", "cart_item_label")
 
     DROPDOWN_PRODUCT_SORT_CONTAINER_BTN = ("xpath", "//select[@data-test='product-sort-container']")
@@ -44,20 +44,6 @@ class MainPage(BasePage):
     def select_random_item_index(self):
         """This property returns a random item from a product catalog"""
         return rand_index(get_length_list(self.get_items_card_link_images))
-
-    @property
-    def get_items_badge_text(self):
-        return self.get_element_text(self.element_is_visible(self.SHOPPING_CART_BADGE_LOCATOR))
-
-    def click_shopping_cart_link(self):
-        return self.click_element(self.SHOPPING_CART_LINK_LOCATOR)
-
-    def check_amount_items_in_cart_badge(self, num_of_items_in_cart_badge: int):
-        """This method checks amount of items in shopping cart badge"""
-        amount_of_items_in_shop_cart_badge = get_int_value_from_str(self.get_items_badge_text)
-
-        assert amount_of_items_in_shop_cart_badge == num_of_items_in_cart_badge, \
-            f"The number in {amount_of_items_in_shop_cart_badge} is not equal {num_of_items_in_cart_badge}"
 
     def add_item_to_cart_from_catalog(self):
         """This method adds to cart one random product from the main page"""

@@ -4,6 +4,7 @@ from data.utils import get_length_list
 
 
 class CartPage(BasePage):
+
     CART_ITEM_LOCATOR = ("xpath", "//div[@class='cart_item']")
     CART_ITEM_NAME_LOCATOR = ("xpath", "//div[@class='inventory_item_name']")
     CART_ITEMS_PRICE_LOCATOR = ("xpath", "//div[@class='inventory_item_price']")
@@ -20,8 +21,9 @@ class CartPage(BasePage):
     def get_items_in_cart(self):
         return self.elements_are_visible(self.CART_ITEM_LOCATOR)
 
-    def is_cart_empty(self):
-        return self.element_is_invisible(self.CART_ITEM_LOCATOR)
+    @property
+    def get_amount_items_in_cart(self):
+        return get_length_list(self.get_items_in_cart)
 
     @property
     def get_item_title_in_cart_text(self):
@@ -30,6 +32,5 @@ class CartPage(BasePage):
     def click_remove_button(self):
         return self.click_element(self.REMOVE_BUTTON_CART_LOCATOR)
 
-    @property
-    def get_amount_items_in_cart(self):
-        return get_length_list(self.get_items_in_cart)
+    def is_cart_empty(self):
+        return self.element_is_invisible(self.CART_ITEM_LOCATOR)

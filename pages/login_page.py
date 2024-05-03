@@ -12,11 +12,6 @@ class LoginPage(BasePage):
     def __init__(self, driver, url):
         super().__init__(driver, url)
 
-    def login(self, username, password):
-        self.element_is_visible(self.USERNAME_FIELD_LOCATOR).send_keys(username)
-        self.element_is_visible(self.PASSWORD_FIELD_LOCATOR).send_keys(password)
-        self.element_is_clickable(self.LOGIN_BUTTON_LOCATOR).click()
-
     @property
     def get_error_login_msg_text(self):
         return self.get_element_text(self.element_is_visible(self.ERROR_LOGIN_MESSAGE_LOCATOR))
@@ -24,3 +19,8 @@ class LoginPage(BasePage):
     @property
     def get_error_msg_container_background_color(self):
         return self.get_ccs_property(self.ERROR_MESSAGE_CONTAINER_LOCATOR, "background-color")
+
+    def login(self, username, password):
+        self.element_is_visible(self.USERNAME_FIELD_LOCATOR).send_keys(username)
+        self.element_is_visible(self.PASSWORD_FIELD_LOCATOR).send_keys(password)
+        self.element_is_clickable(self.LOGIN_BUTTON_LOCATOR).click()
