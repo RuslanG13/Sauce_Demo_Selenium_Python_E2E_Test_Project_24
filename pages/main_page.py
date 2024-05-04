@@ -50,7 +50,7 @@ class MainPage(BasePage):
         selected_item_idx = self.select_random_item_index
         self.get_list_add_to_cart_btn[selected_item_idx].click()
 
-    def open_specific_item_card(self):
-        """This method adds to cart one product from the cart card"""
+    def open_specific_item_card_click_by_item_image(self):
+        """This method redirect user to an item of selected product"""
         selected_item_idx = self.select_random_item_index
         self.get_items_card_link_images[selected_item_idx].click()

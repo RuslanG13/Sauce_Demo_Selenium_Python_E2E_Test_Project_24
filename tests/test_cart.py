@@ -42,7 +42,7 @@ class TestCart:
     def test_add_item_through_item_card(self, login_page, main_page, item_card_page, cart_page):
         """Verify success in adding a product to the cart through the product card"""
         login_page.login(username=LoginData.valid_username, password=LoginData.valid_password)
-        main_page.open_specific_item_card()
+        main_page.open_specific_item_card_click_by_item_image()
         item_card_page.click_add_to_cart_btn()
         item_card_page.check_amount_items_in_cart_badge(ItemCardData.items_in_shop_cart_badge[0])
         item_card_page.click_shopping_cart_link()
@@ -59,7 +59,7 @@ class TestCart:
     def test_delete_item_through_item_card(self, login_page, main_page, item_card_page, cart_page):
         """Verify success in deleting a product from the cart through item card"""
         login_page.login(username=LoginData.valid_username, password=LoginData.valid_password)
-        main_page.open_specific_item_card()
+        main_page.open_specific_item_card_click_by_item_image()
         item_card_page.click_add_to_cart_btn()
         item_card_page.check_amount_items_in_cart_badge(ItemCardData.items_in_shop_cart_badge[0])
         item_card_page.click_remove_button()
